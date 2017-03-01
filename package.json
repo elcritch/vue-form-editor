@@ -34,10 +34,6 @@
     "url": "https://github.com/icebob/vue-form-generator.git"
   },
   "files": [
-    "dist/vfg.js",
-    "dist/vfg.css",
-    "dist/vfg-core.js",
-    "dist/vfg-core.css",
     "src"
   ],
   "author": "Icebob",

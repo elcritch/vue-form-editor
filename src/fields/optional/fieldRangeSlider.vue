@@ -74,7 +74,7 @@
 </script>
 
 
-<style lang="sass">
+<style lang="scss">
 	.vue-form-generator .field-rangeSlider .irs {
 		width: 100%;
 	}

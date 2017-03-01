@@ -39,7 +39,7 @@
 	};
 </script>
 
-<style lang="sass">
+<style lang="scss">
 	.vue-form-generator .field-staticMap img {
 		display: block;
 		width: auto;

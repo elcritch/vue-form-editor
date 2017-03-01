@@ -62,7 +62,7 @@ module.exports = [
 			loaders: {
 				css: ExtractTextPlugin.extract("css"),
 				postcss: ExtractTextPlugin.extract("css"),
-				sass: ExtractTextPlugin.extract("css!sass"),
+				scss: ExtractTextPlugin.extract("css!sass")
 			}
 		},
 

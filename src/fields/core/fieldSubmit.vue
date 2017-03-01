@@ -27,7 +27,7 @@
 	
 </script>
 
-<style lang="sass">
+<style lang="scss">
 	.vue-form-generator .field-submit input {
 		// Default bootstrap primary button style
 		color: #fff !important;

@@ -10,7 +10,7 @@
 	};
 </script>
 
-<style lang="sass">
+<style lang="scss">
 	.vue-form-generator .field-label span {
 		display: block;
 		width: 100%;

@@ -34,7 +34,7 @@
 	};
 </script>
 
-<style lang="sass">
+<style lang="scss">
 
 	$field-switch-width: 120px;
 	$field-switch-height: 30px;

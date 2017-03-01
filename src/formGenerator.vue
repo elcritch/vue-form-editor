@@ -44,7 +44,7 @@ div
 
 	export default {
 		components: fieldComponents,
-		
+		name: "vue-form-generator",
 		props: {
 			schema: Object,
 

@@ -12,9 +12,9 @@
 
 import FormGenerator from './formGenerator.vue';
 
-const VueFormGenerator {
+var VueFormGenerator = {
   install(Vue, options) {
-    Vue.component(FormGenerator.name, FormGenerator);
+    Vue.component('vue-form-generator', FormGenerator);
   }
 };
 

@@ -1,4 +1,4 @@
-import FormGenerator from './formGenerator.vue';
+var FormGenerator = require('./formGenerator.vue');
 
 var VueFormGenerator = {
   install(Vue, options) {

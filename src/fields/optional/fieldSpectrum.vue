@@ -1,6 +1,11 @@
 <template lang="html">
-
-<input type="text" :autocomplete="schema.autocomplete" :disabled="disabled" :placeholder="schema.placeholder" :readonly="schema.readonly" :name="schema.inputName"/>
+	<input
+			type="text"
+			:autocomplete="schema.autocomplete"
+			:disabled="disabled"
+			:placeholder="schema.placeholder"
+			:readonly="schema.readonly"
+			:name="schema.inputName"/>
 </template>
 
 <script>
@@ -16,7 +21,7 @@
 			};
 		},
 
-		watch: { 
+		watch: {
 			model() {
 				if (window.$ && window.$.fn.spectrum) {
 					this.picker.spectrum("set", this.value);

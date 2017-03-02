@@ -1,12 +1,18 @@
 <template lang="html">
-
-<input class="form-control" type="text" v-model="value" :autocomplete="schema.autocomplete" :disabled="disabled" :placeholder="schema.placeholder" :readonly="schema.readonly" :name="schema.inputName"/>
+	<input class="form-control"
+			type="text"
+			v-model="value"
+			:autocomplete="schema.autocomplete"
+			:disabled="disabled"
+			:placeholder="schema.placeholder"
+			:readonly="schema.readonly"
+			:name="schema.inputName"/>
 </template>
 
 <script>
 	import abstractField from "../abstractField";
 	import { defaults } from "lodash";
-	import dateFieldHelper from "../../utils/dateFieldHelper";	
+	import dateFieldHelper from "../../utils/dateFieldHelper";
 
 	let inputFormat = "YYYY-MM-DD";
 
@@ -19,7 +25,7 @@
 		methods: {
 
 			getDateFormat() {
-				if (this.schema.pikadayOptions && this.schema.pikadayOptions.format) 
+				if (this.schema.pikadayOptions && this.schema.pikadayOptions.format)
 					return this.schema.pikadayOptions.format;
 				else
 					return inputFormat;

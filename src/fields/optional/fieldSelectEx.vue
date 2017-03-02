@@ -1,8 +1,21 @@
 <template lang="html">
-
-<select class="selectpicker" v-model="value" :disabled="disabled" :multiple="schema.multiSelect" :title="schema.placeholder" data-width="100%" :name="schema.inputName"></select>
-<option :disabled="schema.required" v-if="schema.multiSelect !== true" :value="null" :selected="value == undefined"></option>
-<option v-for="item in items" :value="getItemID(item)">{{ getItemName(item) }}</option>
+	<select class="selectpicker"
+			v-model="value"
+			:disabled="disabled"
+			:multiple="schema.multiSelect"
+			:title="schema.placeholder"
+			data-width="100%"
+			:name="schema.inputName">
+	</select>
+	<option
+			:disabled="schema.required"
+			v-if="schema.multiSelect !== true"
+			:value="null"
+			:selected="value == undefined">
+	</option>
+	<option
+			v-for="item in items"
+			:value="getItemID(item)">{{ getItemName(item) }}</option>
 </template>
 
 <script>
@@ -20,7 +33,7 @@
 					return values.apply(this, [this.model, this.schema]);
 				} else
 					return values;
-			}      
+			}
 		},
 
 		methods: {
@@ -42,7 +55,7 @@
 		watch: {
 			model: function() {
 				if ($.fn.selectpicker)
-					$(this.$el).selectpicker("refresh");	
+					$(this.$el).selectpicker("refresh");
 			}
 		},
 
@@ -58,7 +71,7 @@
 		},
 
 		beforeDestroy() {
-			if ($.fn.selectpicker) 
+			if ($.fn.selectpicker)
 				$(this.$el).selectpicker("destroy");
 		}
 	};

@@ -1,8 +1,8 @@
 <template lang="html">
-
-</template>
-<template>
-	<div class="slider" :disabled="disabled" :class="{ 'contain-pips': containPips, 'contain-tooltip': containTooltip }"></div>  
+	<div class="slider"
+			:disabled="disabled"
+			:class="{ 'contain-pips': containPips, 'contain-tooltip': containTooltip }">
+	</div>
 </template>
 
 <script>
@@ -50,7 +50,7 @@
 					this.slider.noUiSlider.set(value);
 				}
 			},
-			formatValueToModel(val) {				
+			formatValueToModel(val) {
 				if(typeof this.slider.noUiSlider !== "undefined"){
 					if (val instanceof Array) {
 						return [Number(val[0]), Number(val[1])];

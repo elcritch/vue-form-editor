@@ -1,6 +1,43 @@
 <template lang="html">
-
-<multiselect :id="selectOptions.id" :options="options" :multiple="schema.multiSelect" :value="value" :track-by="selectOptions.trackBy || null" :label="selectOptions.label || null" :searchable="selectOptions.searchable" :local-search="selectOptions.localSearch" :clear-on-select="selectOptions.clearOnSelect" :hide-selected="selectOptions.hideSelected" :placeholder="schema.placeholder" :max-height="selectOptions.maxHeight" :allow-empty="selectOptions.allowEmpty" :reset-after="selectOptions.resetAfter" :close-on-select="selectOptions.closeOnSelect" :custom-label="customLabel" :taggable="selectOptions.taggable" :tag-placeholder="selectOptions.tagPlaceholder" :max="schema.max || null" @input="updateSelected" @tag="addTag" @select="onSelect" @remove="onRemove" @search-change="onSearchChange" @open="onOpen" @close="onClose" :select-label="selectOptions.selectLabel" :selected-label="selectOptions.selectedLabel" :deselect-label="selectOptions.deselectLabel" :show-labels="selectOptions.showLabels" :limit="selectOptions.limit" :limit-text="selectOptions.limitText" :loading="selectOptions.loading" :disabled="disabled" :option-partial="selectOptions.optionPartial" :show-pointer="selectOptions.showPointer" :option-height="selectOptions.optionHeight"></multiselect>
+	<multiselect
+			:id="selectOptions.id"
+			:options="options"
+			:multiple="schema.multiSelect"
+			:value="value"
+			:track-by="selectOptions.trackBy || null"
+			:label="selectOptions.label || null"
+			:searchable="selectOptions.searchable"
+			:local-search="selectOptions.localSearch"
+			:clear-on-select="selectOptions.clearOnSelect"
+			:hide-selected="selectOptions.hideSelected"
+			:placeholder="schema.placeholder"
+			:max-height="selectOptions.maxHeight"
+			:allow-empty="selectOptions.allowEmpty"
+			:reset-after="selectOptions.resetAfter"
+			:close-on-select="selectOptions.closeOnSelect"
+			:custom-label="customLabel"
+			:taggable="selectOptions.taggable"
+			:tag-placeholder="selectOptions.tagPlaceholder"
+			:max="schema.max || null"
+			@input="updateSelected"
+			@tag="addTag"
+			@select="onSelect"
+			@remove="onRemove"
+			@search-change="onSearchChange"
+			@open="onOpen"
+			@close="onClose"
+			:select-label="selectOptions.selectLabel"
+			:selected-label="selectOptions.selectedLabel"
+			:deselect-label="selectOptions.deselectLabel"
+			:show-labels="selectOptions.showLabels"
+			:limit="selectOptions.limit"
+			:limit-text="selectOptions.limitText"
+			:loading="selectOptions.loading"
+			:disabled="disabled"
+			:option-partial="selectOptions.optionPartial"
+			:show-pointer="selectOptions.showPointer"
+			:option-height="selectOptions.optionHeight">
+	</multiselect>
 </template>
 <script>
 	import abstractField from "../abstractField";
@@ -25,7 +62,7 @@
 					return this.schema.selectOptions.customLabel;
 				} else {
 					return function(currentLabel){return currentLabel;};
-				} 
+				}
 			}
 		},
 		methods: {
@@ -65,4 +102,3 @@
 		}
 	};
 </script>
-

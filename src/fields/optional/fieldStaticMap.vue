@@ -1,5 +1,5 @@
 <template lang="html">
-<img :src="mapLink"/>
+	<img :src="mapLink"/>
 </template>
 
 <script>
@@ -23,9 +23,9 @@
 
 					lat = this.value[options.lat];
 					lng = this.value[options.lng];
-					
+
 					let url = `http://maps.googleapis.com/maps/api/staticmap?center=${lat},${lng}&zoom=${options.zoom}&size=${options.sizeX}x${options.sizeY}`;
-					
+
 					let props = ["scale", "format", "maptype", "language", "region", "markers", "path", "visible", "style", "key", "signature"];
 					for (let prop of props) {
 						if (typeof options[prop] !== "undefined") {
@@ -46,5 +46,3 @@
 		max-width: 100%;
 	}
 </style>
-
-

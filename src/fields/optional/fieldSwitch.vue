@@ -1,17 +1,26 @@
 <template lang="html">
-
-<label></label>
-<input type="checkbox" v-model="value" :autocomplete="schema.autocomplete" :disabled="disabled" :name="schema.inputName"/><span class="label" :data-on="schema.textOn || 'On'" :data-off="schema.textOff || 'Off'"></span><span class="handle"></span>
+	<label></label>
+	<input type="checkbox"
+			v-model="value"
+			:autocomplete="schema.autocomplete"
+			:disabled="disabled"
+			:name="schema.inputName"/>
+	<span class="label"
+			:data-on="schema.textOn || 'On'"
+			:data-off="schema.textOff || 'Off'">
+	</span>
+	<span class="handle">
+	</span>
 </template>
 
 <script>
 	import abstractField from "../abstractField";
-	
+
 	export default {
 		mixins: [ abstractField ],
 
 		methods: {
-			
+
 			formatValueToField(value) {
 				if (value != null && this.schema.valueOn)
 					return value == this.schema.valueOn;
@@ -28,7 +37,7 @@
 				}
 
 				return value;
-			}		
+			}
 		}
 	};
 </script>
@@ -38,7 +47,7 @@
 	$field-switch-width: 120px;
 	$field-switch-height: 30px;
 
-	.vue-form-generator .field-switch { 
+	.vue-form-generator .field-switch {
 
 		.field-wrap label {
 			position: relative;
@@ -131,7 +140,7 @@
 			left: calc(100% - ($field-switch-height - 1px));
 			box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
 		}
-		 
+
 		/* Transition
 		========================== */
 		.label, .handle {

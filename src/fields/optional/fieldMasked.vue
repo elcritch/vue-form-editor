@@ -1,6 +1,12 @@
 <template lang="html">
-
-<input class="form-control" type="text" v-model="value" :autocomplete="schema.autocomplete" :disabled="disabled" :placeholder="schema.placeholder" :readonly="schema.readonly" :name="schema.inputName"/>
+	<input class="form-control"
+			type="text"
+			v-model="value"
+			:autocomplete="schema.autocomplete"
+			:disabled="disabled"
+			:placeholder="schema.placeholder"
+			:readonly="schema.readonly"
+			:name="schema.inputName"/>
 </template>
 
 <script>
@@ -23,7 +29,7 @@
 		beforeDestroy() {
 			if (window.$ && window.$.fn.mask)
 				$(this.$el).unmask();
-		}	
+		}
 	};
 </script>
 

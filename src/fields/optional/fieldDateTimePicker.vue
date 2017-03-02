@@ -1,7 +1,16 @@
 <template lang="html">
-
-<div class="input-group date"></div>
-<input class="form-control" type="text" v-model="value" :autocomplete="schema.autocomplete" :disabled="disabled" :placeholder="schema.placeholder" :readonly="schema.readonly" :name="schema.inputName"/><span class="input-group-addon"></span><span class="glyphicon glyphicon-calendar"></span>
+	<div class="input-group date"></div>
+	<input class="form-control" type="text"
+			v-model="value"
+			:autocomplete="schema.autocomplete"
+			:disabled="disabled"
+			:placeholder="schema.placeholder"
+			:readonly="schema.readonly"
+			:name="schema.inputName"/>
+	<span class="input-group-addon">
+	</span>
+	<span class="glyphicon glyphicon-calendar">
+	</span>
 </template>
 
 <script>
@@ -18,7 +27,7 @@
 		methods: {
 
 			getDateFormat() {
-				if (this.schema.dateTimePickerOptions && this.schema.dateTimePickerOptions.format) 
+				if (this.schema.dateTimePickerOptions && this.schema.dateTimePickerOptions.format)
 					return this.schema.dateTimePickerOptions.format;
 				else
 					return inputFormat;
@@ -46,7 +55,7 @@
 			if (window.$ && window.$.fn.datetimepicker){
 				$(this.$el).data("DateTimePicker").destroy();
 			}
-		}		
+		}
 	};
 </script>
 

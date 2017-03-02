@@ -1,11 +1,27 @@
+<template>
+	<div class="container" >
+    <div class="panel panel-default">
+      <div class="panel-heading">Form</div>
+      <div class="panel-body">
+        <form action="https://httpbin.org/post" method="POST" enctype="application/x-www-form-urlencoded">
+          <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
+        </form>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Model</div>
+      <div class="panel-body">
+        <pre v-if="model" v-html="prettyJSON(model)"></pre>
+      </div>
+    </div>
+
+  </div>
+</template>
+<script>
 var VueFormGenerator = window.VueFormGenerator;
 
-var vm = new Vue({
-	el: "#app",
-	components: {
-		"vue-form-generator": VueFormGenerator.component
-	},
-
+export default {
 	methods: {
 		prettyJSON: function(json) {
 			if (json) {
@@ -74,7 +90,7 @@ var vm = new Vue({
 					required: true,
 					hint: "Minimum 6 characters",
 					validator: VueFormGenerator.validators.string
-				},	
+				},
 				{
 					type: "input",
 					inputType: "email",
@@ -83,7 +99,7 @@ var vm = new Vue({
 					inputName: "email",
 					placeholder: "User's e-mail address",
 					validator: VueFormGenerator.validators.email
-				},					
+				},
 				{
 					type: "select",
 					label: "Skills",
@@ -127,4 +143,75 @@ var vm = new Vue({
 			validateAfterChanged: false
 		}
 	}
-});
+};
+
+</script>
+
+<style>
+		html {
+			font-family: Tahoma;
+			font-size: 14px;
+		}
+
+		body {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-size: 14px;
+			line-height: 1.42857143;
+			color: #333;
+		}
+
+		pre {
+			overflow: auto;
+		}
+			pre .string { color: #885800; }
+			pre .number { color: blue; }
+			pre .boolean { color: magenta; }
+			pre .null { color: red; }
+			pre .key { color: green; }
+
+		.container {
+			max-width: 970px;
+			padding-right: 15px;
+			padding-left: 15px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		h1 {
+			text-align: center;
+			font-size: 36px;
+			margin-top: 20px;
+			margin-bottom: 10px;
+			font-weight: 500;
+		}
+
+		fieldset {
+			border: 0;
+		}
+
+		.panel {
+			margin-bottom: 20px;
+			background-color: #fff;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+			box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+			border-color: #ddd;
+		}
+
+		.panel-heading {
+			color: #333;
+			background-color: #f5f5f5;
+			border-color: #ddd;
+
+			padding: 10px 15px;
+			border-bottom: 1px solid transparent;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		}
+
+		.panel-body {
+			padding: 15px;
+		}
+
+</style>

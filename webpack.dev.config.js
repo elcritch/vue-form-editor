@@ -17,21 +17,23 @@ var loaders = [
 		test: /\.json$/,
 		loader: 'json'
 	},
-	{ 
-		test: /\.(woff2?|svg)$/, 
-		loader: "url" 
-		//loader: "url?limit=10000" 
+	{
+		test: /\.(woff2?|svg)$/,
+		loader: "url"
+		//loader: "url?limit=10000"
 	},
-	{ 
-		test: /\.(ttf|eot)$/, 
-		loader: "url" 
+	{
+		test: /\.(ttf|eot)$/,
+		loader: "url"
 	}
 ];
 
 module.exports = {
 	devtool: "source-map",
-	
+
 	entry: {
+		test_post_form: path.resolve("dev", "post-form", "main.js"),
+		test_simple: path.resolve("dev", "simple", "main.js"),
 		full: path.resolve("dev", "full", "main.js"),
 		mselect: path.resolve("dev", "multiselect", "main.js")
 	},

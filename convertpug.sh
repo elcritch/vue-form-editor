@@ -1,7 +1,7 @@
 
 
-for f in `ls src/fields/core/*.vue src/fields/optional/*.vue | grep -v '.vue.vue'`; do
-# for f in `ls src/formGenerator.vue `; do
+# for f in `ls src/fields/core/*.vue src/fields/optional/*.vue | grep -v '.vue.vue'`; do
+for f in `ls src/formGenerator.vue `; do
   echo "File: " $f
 
   pup -p 'template text{}' < $f | sed '/^$/d' | ruby -pe '$_.gsub!(/^\t/,"")' > $f.pug

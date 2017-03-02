@@ -1,6 +1,9 @@
 <template lang="html">
-
-<input type="submit" :value="schema.buttonText" @click="click" :name="schema.inputName" :disabled="disabled"/>
+	<input type="submit"
+			:value="schema.buttonText"
+			@click="click"
+			:name="schema.inputName"
+			:disabled="disabled"/>
 </template>
 
 <script>
@@ -25,7 +28,7 @@
 			}
 		}
 	};
-	
+
 </script>
 
 <style lang="sass">

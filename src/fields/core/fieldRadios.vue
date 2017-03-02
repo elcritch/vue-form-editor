@@ -1,14 +1,19 @@
 <template lang="html">
-
-<div class="radio-list" :disabled="disabled"></div>
-<label v-for="item in items"></label>
-<input type="radio" :disabled="disabled" :name="id" @click="onSelection(item)" :value="getItemValue(item)" :checked="isItemChecked(item)"/>{{ getItemName(item) }}
+	<div class="radio-list" :disabled="disabled"></div>
+	<label v-for="item in items"></label>
+	<input type="radio" 
+			:disabled="disabled"
+			:name="id"
+			@click="onSelection(item)"
+			:value="getItemValue(item)"
+			:checked="isItemChecked(item)"/>
+	{{ getItemName(item) }}
 </template>
 
 <script>
 	import {isObject} from "lodash";
 	import abstractField from "../abstractField";
-	
+
 	export default {
 		mixins: [ abstractField ],
 

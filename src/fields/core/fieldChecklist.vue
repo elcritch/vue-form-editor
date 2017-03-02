@@ -1,24 +1,28 @@
 <template lang="html">
-
-<div class="wrapper"></div>
-<div class="listbox form-control" v-if="schema.listBox" :disabled="disabled"></div>
-<div class="list-row" v-for="item in items"></div>
-<label></label>
-<input type="checkbox" :checked="getItemIsChecked(item)" :disabled="disabled" @change="onChanged($event, item)"/>{{ getItemName(item) }}
-<div class="combobox form-control" v-if="!schema.listBox" :disabled="disabled"></div>
-<div class="mainRow" @click="onExpandCombo" :class="{ expanded: comboExpanded }"></div>
-<div class="info">{{ selectedCount }} selected</div>
-<div class="arrow"></div>
-<div class="dropList"></div>
-<div class="list-row" v-if="comboExpanded" v-for="item in items"></div>
-<label></label>
-<input type="checkbox" :checked="getItemIsChecked(item)" :disabled="disabled" @change="onChanged($event, item)"/>{{ getItemName(item) }}
+	<div class="wrapper"></div>
+  <div class="listbox form-control" v-if="schema.listBox"></div>
+  <div class="list-row" v-for="item in items"></div>
+  <form>
+    <input type="checkbox">{{ getItemName(item) }}
+  </form>
+  <div class="combobox form-control" v-if="!schema.listBox"></div>
+  <div class="mainRow"></div>
+  <div class="info">
+    {{ selectedCount }} selected
+  </div>
+  <div class="arrow"></div>
+  <div class="dropList"></div>
+  <div class="list-row" v-if="comboExpanded" v-for="item in items">
+  </div>
+  <form>
+    <input type="checkbox">{{ getItemName(item) }}
+  </form>
 </template>
 
 <script>
 	import {isObject, isNil} from "lodash";
 	import abstractField from "../abstractField";
-	
+
 	export default {
 		mixins: [ abstractField ],
 
@@ -42,7 +46,7 @@
 					return this.value.length;
 
 				return 0;
-			}   
+			}
 		},
 
 		methods: {
@@ -76,7 +80,7 @@
 			},
 
 			onExpandCombo() {
-				this.comboExpanded = !this.comboExpanded;				
+				this.comboExpanded = !this.comboExpanded;
 			}
 		}
 	};
@@ -110,7 +114,7 @@
 				cursor: pointer;
 				position: relative;
 				padding-right: 10px;
-		
+
 				.arrow {
 					position: absolute;
 					right: -9px;

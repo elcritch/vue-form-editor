@@ -1,14 +1,21 @@
 <template lang="html">
-
-<select class="form-control" v-model="value" :disabled="disabled" :name="schema.inputName"></select>
-<option :disabled="schema.required" :value="null" :selected="value == undefined">{{ selectOptions.noneSelectedText || "<Nothing selected>" }}</option>
-<option v-for="item in items" :value="getItemID(item)">{{ getItemName(item) }}</option>
+	<select class="form-control"
+			v-model="value"
+			:disabled="disabled"
+			:name="schema.inputName">
+	</select>
+	<option :disabled="schema.required" :value="null" :selected="value == undefined">
+		{{ selectOptions.noneSelectedText || "<Nothing selected>" }}
+	</option>
+	<option v-for="item in items" :value="getItemID(item)">
+		{{ getItemName(item) }}
+	</option>
 </template>
 
 <script>
 	import {isObject} from "lodash";
 	import abstractField from "../abstractField";
-	
+
 	export default {
 		mixins: [ abstractField ],
 
@@ -23,7 +30,7 @@
 					return values.apply(this, [this.model, this.schema]);
 				} else
 					return values;
-			}      
+			}
 		},
 
 		methods: {

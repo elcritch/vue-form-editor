@@ -1,17 +1,16 @@
 <template lang="html">
-
-<div></div>
-<fieldset class="vue-form-generator" v-if="schema != null"></fieldset>
-<template v-for="field in fields"></template>
-<div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)"></div>
-<label></label>{{ field.label }}<span class="help" v-if="field.help"></span><i class="icon"></i>
-<div class="helpText" v-html="field.help"></div>
-<div class="field-wrap"></div>
-<component :is="getFieldType(field)" :disabled="fieldDisabled(field)" :model="model" :schema.sync="field" @model-updated="modelUpdated" @validated="onFieldValidated"></component>
-<div class="buttons" v-if="buttonVisibility(field)"></div>
-<button v-for="btn in field.buttons" @click="btn.onclick(model, field)" :class="btn.classes">{{ btn.label }}</button>
-<div class="hint" v-if="field.hint">{{ field.hint }}</div>
-<div class="errors" v-if="fieldErrors(field).length &gt; 0"></div><span v-for="(error, index) in fieldErrors(field)" track-by="index">{{ error }}</span>
+	<div></div>
+	<fieldset class="vue-form-generator" v-if="schema != null"></fieldset>
+	<template v-for="field in fields"></template>
+	<div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)"></div>
+	<label></label>{{ field.label }}<span class="help" v-if="field.help"></span><i class="icon"></i>
+	<div class="helpText" v-html="field.help"></div>
+	<div class="field-wrap"></div>
+	<component :is="getFieldType(field)" :disabled="fieldDisabled(field)" :model="model" :schema.sync="field" @model-updated="modelUpdated" @validated="onFieldValidated"></component>
+	<div class="buttons" v-if="buttonVisibility(field)"></div>
+	<button v-for="btn in field.buttons" @click="btn.onclick(model, field)" :class="btn.classes">{{ btn.label }}</button>
+	<div class="hint" v-if="field.hint">{{ field.hint }}</div>
+	<div class="errors" v-if="fieldErrors(field).length &gt; 0"></div><span v-for="(error, index) in fieldErrors(field)" track-by="index">{{ error }}</span>
 </template>
 
 <script>
@@ -22,7 +21,7 @@
 	let fieldComponents = {};
 
 	let coreFields = require.context("./fields/core", false, /^\.\/field([\w-_]+)\.vue$/);
-				
+
 	each(coreFields.keys(), (key) => {
 		let compName = key.replace(/^\.\//, "").replace(/\.vue/, "");
 		fieldComponents[compName] = coreFields(key);
@@ -30,7 +29,7 @@
 
 	if (process.env.FULL_BUNDLE) {  // eslint-disable-line
 		let Fields = require.context("./fields/optional", false, /^\.\/field([\w-_]+)\.vue$/);
-				
+
 		each(Fields.keys(), (key) => {
 			let compName = key.replace(/^\.\//, "").replace(/\.vue/, "");
 			fieldComponents[compName] = Fields(key);
@@ -41,7 +40,7 @@
 
 	export default {
 		components: fieldComponents,
-		
+
 		props: {
 			schema: Object,
 
@@ -67,7 +66,7 @@
 				default: false
 			}
 		},
-		
+
 		data () {
 			return {
 				errors: [] // Validation errors
@@ -118,15 +117,15 @@
 				}
 			});
 		},
-	
+
 		methods: {
 			// Get style classes of field
 			getFieldRowClasses(field) {
 				let baseClasses = {
-					error: this.fieldErrors(field).length > 0, 
-					disabled: this.fieldDisabled(field), 
-					readonly: this.fieldReadonly(field), 
-					featured: this.fieldFeatured(field), 
+					error: this.fieldErrors(field).length > 0,
+					disabled: this.fieldDisabled(field),
+					readonly: this.fieldReadonly(field),
+					featured: this.fieldFeatured(field),
 					required: this.fieldRequired(field)
 				};
 
@@ -178,7 +177,7 @@
 					return true;
 
 				return field.visible;
-			},		
+			},
 
 			// Get readonly prop of field
 			fieldReadonly(field) {
@@ -189,7 +188,7 @@
 					return false;
 
 				return field.readonly;
-			},		
+			},
 
 			// Get featured prop of field
 			fieldFeatured(field) {
@@ -249,7 +248,7 @@
 
 				each(this.$children, (child) => {
 					child.clearValidationErrors();
-				});				
+				});
 			},
 
 			modelUpdated(newVal, schema){
@@ -259,26 +258,26 @@
 			buttonVisibility(field) {
 				return field.buttons && field.buttons.length > 0;
 			},
-			
+
 			fieldErrors(field) {
 				let res = this.errors.filter(e => e.field == field);
 				return res.map(item => item.error);
 			}
 		}
 	};
-	
+
 </script>
 
 <style lang="sass">
-	
+
 	$errorColor: #F00;
 
 	fieldset.vue-form-generator {
 
 		* {
 			box-sizing: border-box;
-		}		
-		
+		}
+
 		.form-control {
 			// Default Bootstrap .form-control style
 			display: block;
@@ -292,10 +291,10 @@
 			border: 1px solid #ccc;
 			border-radius: 4px;
 			box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-			transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;	
+			transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 
 		} // .form-control
-		
+
 		span.help {
 			margin-left: 0.3em;
 			position: relative;
@@ -344,13 +343,13 @@
 				left: 0;
 				position: absolute;
 				width: 100%;
-			}  
+			}
 
 			&:hover .helpText {
 				opacity: 1;
 				pointer-events: auto;
 				transform: translateY(0px);
-			}		
+			}
 
 		} // span.help
 
@@ -362,11 +361,11 @@
 				margin-left: 4px;
 			}
 
-			button, input[type=submit] {					
+			button, input[type=submit] {
 				// Default Bootstrap button style
 				display: inline-block;
 				padding: 6px 12px;
-				margin: 0px;					
+				margin: 0px;
 				font-size: 14px;
 				font-weight: normal;
 				line-height: 1.42857143;
@@ -402,11 +401,11 @@
 				&:disabled {
 					opacity: 0.6;
 					cursor: not-allowed;
-				}				
+				}
 
 			} // button, input[submit]
 
-		} // .field-wrap		
+		} // .field-wrap
 
 		.hint {
 			font-style: italic;
@@ -428,7 +427,7 @@
 			&.featured {
 				> label {
 					font-weight: bold;
-				}			
+				}
 			}
 
 			&.required {
@@ -439,14 +438,14 @@
 					position: absolute;
 					padding-left: 0.2em;
 					font-size: 1em;
-				}	
+				}
 			}
 
 			&.disabled {
 				> label {
 					color: #666;
 					font-style: italic;
-				}			
+				}
 			}
 
 			&.error {
@@ -469,7 +468,7 @@
 							font-weight: 600;
 					}
 
-				} // .errors	
+				} // .errors
 
 			} // .error
 

@@ -1,6 +1,7 @@
 
 
-for f in `ls src/fields/core/*.vue src/fields/optional/*.vue `; do
+# for f in `ls src/fields/core/*.vue src/fields/optional/*.vue `; do
+for f in `ls src/*.vue `; do
   echo "File: " $f
 
   pup -p 'template text{}' < $f | ruby -pe '$_.lstrip!' > $f.pug

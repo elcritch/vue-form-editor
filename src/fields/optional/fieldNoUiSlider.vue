@@ -1,3 +1,6 @@
+<template lang="html">
+
+</template>
 <template>
 	<div class="slider" :disabled="disabled" :class="{ 'contain-pips': containPips, 'contain-tooltip': containTooltip }"></div>  
 </template>

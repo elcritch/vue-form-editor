@@ -1,5 +1,5 @@
-<template lang="pug">
-	span {{ value }}
+<template lang="html">
+<span>{{ value }}</span>
 </template>
 
 <script>

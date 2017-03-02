@@ -5,5 +5,6 @@ Vue.use(VueFormGenerator);
 import App from './app.vue';
 
 new Vue({
-    ...App
-}).$mount('#app');
+  el: "body",
+  ...App
+})

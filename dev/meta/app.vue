@@ -1,5 +1,18 @@
 <template lang="html">
 	<div class="container">
+		<b-alert :show="true" state="success" dismissible>   This is an alert </b-alert>
+
+		<b-navbar >
+			<b-nav-toggle target="nav_collapse"/>
+			<a class="navbar-brand" to="/">
+			<span>Bootstrap4</span> </a>
+				<b-nav isNavBar>
+					<b-nav-item>Support</b-nav-item>
+					<b-nav-item>Docs</b-nav-item>
+					<b-nav-item>Contact Us</b-nav-item>
+				</b-nav>
+		</b-navbar>
+
     <div class="panel panel-default">
       <div class="panel-heading">Form</div>
       <div class="panel-body">
@@ -22,7 +35,11 @@ import Vue from "vue";
 import Multiselect from "vue-multiselect"
 import VueFormGenerator from "../../src";
 
+import Alert from 'bootstrap-vue/components/alert.vue'
+// Vue.use('bAlert',Alert);
+
 export default {
+  components: {bAlert:Alert},
 	methods: {
 		prettyJSON: function(json) {
 			if (json) {

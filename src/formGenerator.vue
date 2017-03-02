@@ -1,16 +1,46 @@
 <template lang="html">
-	<div></div>
-	<fieldset class="vue-form-generator" v-if="schema != null"></fieldset>
-	<template v-for="field in fields"></template>
-	<div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)"></div>
-	<label></label>{{ field.label }}<span class="help" v-if="field.help"></span><i class="icon"></i>
-	<div class="helpText" v-html="field.help"></div>
-	<div class="field-wrap"></div>
-	<component :is="getFieldType(field)" :disabled="fieldDisabled(field)" :model="model" :schema.sync="field" @model-updated="modelUpdated" @validated="onFieldValidated"></component>
-	<div class="buttons" v-if="buttonVisibility(field)"></div>
-	<button v-for="btn in field.buttons" @click="btn.onclick(model, field)" :class="btn.classes">{{ btn.label }}</button>
-	<div class="hint" v-if="field.hint">{{ field.hint }}</div>
-	<div class="errors" v-if="fieldErrors(field).length &gt; 0"></div><span v-for="(error, index) in fieldErrors(field)" track-by="index">{{ error }}</span>
+	<div>
+	</div>
+	<fieldset class="vue-form-generator" v-if="schema != null">
+	</fieldset>
+	<template v-for="field in fields">
+	</template>
+	<div class="form-group"
+			v-if="fieldVisible(field)" :class="getFieldRowClasses(field)">
+	</div>
+	<label>
+	</label>
+	{{ field.label }}
+	<span class="help" v-if="field.help">
+	</span>
+	<i class="icon">
+	</i>
+	<div class="helpText" v-html="field.help">
+	</div>
+	<div class="field-wrap">
+	</div>
+	<component :is="getFieldType(field)"
+			:disabled="fieldDisabled(field)"
+			:model="model"
+			:schema.sync="field"
+			@model-updated="modelUpdated"
+			@validated="onFieldValidated">
+	</component>
+	<div class="buttons" v-if="buttonVisibility(field)">
+	</div>
+	<button v-for="btn in field.buttons"
+			@click="btn.onclick(model, field)"
+			:class="btn.classes">
+		{{ btn.label }}
+	</button>
+	<div class="hint" v-if="field.hint">
+		{{ field.hint }}
+	</div>
+	<div class="errors" v-if="fieldErrors(field).length &gt; 0">
+	</div>
+	<span v-for="(error, index) in fieldErrors(field)" track-by="index">
+		{{ error }}
+	</span>
 </template>
 
 <script>

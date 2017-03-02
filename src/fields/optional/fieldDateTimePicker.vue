@@ -1,8 +1,7 @@
-<template lang="pug">
-	.input-group.date
-		input.form-control(type="text", v-model="value", :autocomplete="schema.autocomplete", :disabled="disabled", :placeholder="schema.placeholder", :readonly="schema.readonly", :name="schema.inputName")
-		span.input-group-addon
-			span.glyphicon.glyphicon-calendar
+<template lang="html">
+  <div class="input-group date">
+    <input class="form-control" type="text" v-model="value" :autocomplete="schema.autocomplete" :disabled="disabled" :placeholder="schema.placeholder" :readonly="schema.readonly" :name="schema.inputName"/><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+  </div>
 </template>
 
 <script>

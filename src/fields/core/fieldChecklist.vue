@@ -1,21 +1,26 @@
-<template lang="pug">
-	.wrapper
-		.listbox.form-control(v-if="schema.listBox", :disabled="disabled")
-			.list-row(v-for="item in items")
-				label
-					input(type="checkbox", :checked="getItemIsChecked(item)", :disabled="disabled", @change="onChanged($event, item)")
-					| {{ getItemName(item) }}
-
-		.combobox.form-control(v-if="!schema.listBox", :disabled="disabled")
-			.mainRow(@click="onExpandCombo", :class="{ expanded: comboExpanded }")
-				.info {{ selectedCount }} selected
-				.arrow
-
-			.dropList
-				.list-row(v-if="comboExpanded", v-for="item in items")
-					label
-						input(type="checkbox", :checked="getItemIsChecked(item)", :disabled="disabled", @change="onChanged($event, item)")
-						| {{ getItemName(item) }}
+<template lang="html">
+  <div class="wrapper">
+    <div class="listbox form-control" v-if="schema.listBox" :disabled="disabled">
+      <div class="list-row" v-for="item in items">
+        <label>
+          <input type="checkbox" :checked="getItemIsChecked(item)" :disabled="disabled" @change="onChanged($event, item)"/>{{ getItemName(item) }}
+        </label>
+      </div>
+    </div>
+    <div class="combobox form-control" v-if="!schema.listBox" :disabled="disabled">
+      <div class="mainRow" @click="onExpandCombo" :class="{ expanded: comboExpanded }">
+        <div class="info">{{ selectedCount }} selected</div>
+        <div class="arrow"></div>
+      </div>
+      <div class="dropList">
+        <div class="list-row" v-if="comboExpanded" v-for="item in items">
+          <label>
+            <input type="checkbox" :checked="getItemIsChecked(item)" :disabled="disabled" @change="onChanged($event, item)"/>{{ getItemName(item) }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

@@ -50,7 +50,7 @@
 					return this.value.length;
 
 				return 0;
-			}   
+			}
 		},
 
 		methods: {
@@ -84,7 +84,7 @@
 			},
 
 			onExpandCombo() {
-				this.comboExpanded = !this.comboExpanded;				
+				this.comboExpanded = !this.comboExpanded;
 			}
 		}
 	};
@@ -118,7 +118,7 @@
 				cursor: pointer;
 				position: relative;
 				padding-right: 10px;
-		
+
 				.arrow {
 					position: absolute;
 					right: -9px;

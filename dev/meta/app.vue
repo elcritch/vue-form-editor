@@ -1,64 +1,23 @@
 <template lang="html">
-	<div class="container">
-		<el-tabs v-model="activeName" @tab-click="handleClick">
-			<el-tab-pane label="User" name="first">User</el-tab-pane>
-			<el-tab-pane label="Config" name="second">Config</el-tab-pane>
-			<el-tab-pane label="Role" name="third">Role</el-tab-pane>
-			<el-tab-pane label="Task" name="fourth">Task</el-tab-pane>
-		</el-tabs>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Form</div>
-      <div class="panel-body">
-        <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
-      </div>
-    </div>
-
-    <div class="panel panel-default">
-      <div class="panel-heading">Model</div>
-      <div class="panel-body">
-        <pre v-if="model" v-html="prettyJSON(model)"></pre>
-      </div>
-    </div>
-
-  </div>
+	<div>
+		<vue-form-creator :schema="schema" :model="model" :options="formOptions" >
+		</vue-form-creator>
+	</div>
 </template>
 
 <script>
-import Vue from "vue";
-import Multiselect from "vue-multiselect"
-import VueFormGenerator from "../../src";
+// import Vue from "vue";
+// import Multiselect from "vue-multiselect"
+// import VueFormGenerator from "../../src";
 
 export default {
 	methods: {
 		handleClick(tab, event) {
 			console.log(tab, event);
 		},
-		prettyJSON: function(json) {
-			if (json) {
-				json = JSON.stringify(json, undefined, 4);
-				json = json.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-				return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-					var cls = "number";
-					if (/^"/.test(match)) {
-						if (/:$/.test(match)) {
-							cls = "key";
-						} else {
-							cls = "string";
-						}
-					} else if (/true|false/.test(match)) {
-						cls = "boolean";
-					} else if (/null/.test(match)) {
-						cls = "null";
-					}
-					return "<span class=\"" + cls + "\">" + match + "</span>";
-				});
-			}
-		}
 	},
 	data() {
 		return {
-			activeName: 'first',
 
 			model: {
 

@@ -55,7 +55,26 @@ module.exports = [
 		],
 
 		module: {
-			loaders
+			loaders,
+			rules: [
+					{
+						test: /\.less$/,
+						use: ExtractTextPlugin.extract({
+							fallbackLoader: 'style-loader',
+							loaders: [
+								// activate source maps via loader query
+								{
+									loader: 'css-loader',
+									options: { sourceMap: true, importLoaders: 1 }
+								},
+								{
+									loader: 'less-loader',
+									options: { sourceMap: true }
+								}
+							]
+						})
+					}
+				]
 		},
 
 		vue: {
@@ -63,6 +82,7 @@ module.exports = [
 				css: ExtractTextPlugin.extract("css"),
 				postcss: ExtractTextPlugin.extract("css"),
 				sass: ExtractTextPlugin.extract("css!sass"),
+				less: ExtractTextPlugin.extract("css!less"),
 			}
 		},
 

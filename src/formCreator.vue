@@ -4,12 +4,35 @@
     <div class="col-md-6  col-sm-4">
       <div class="box">
         <h2>Vue Form Creator</h2>
-        <ui-select
-            label="Favourite colour"
-            placeholder="Select a colour"
-            :options="fieldNames"
-            v-model="select1" >
-        </ui-select>
+        <span class="icon is-medium">
+          <i class="fa fa-home"></i>
+        </span>
+
+        <dropdown>
+          <a class="button is-primary">
+            <span>Dropdown Menu</span>
+            <span class="icon is-small">
+              <i class="fa fa-angle-down"></i>
+            </span>
+          </a>
+          <div slot="content">
+            <menus>
+              <a class="button is-danger">Black</a>
+
+              <menu-item to="/meta">Members</menu-item>
+              <menu-item to="/meta">Tickets</menu-item>
+              <menu-item to="/meta">Articles</menu-item>
+              <menu-item>
+                <span>Settings</span>
+                <menus slot="sub" type="float">
+                  <menu-item icon="home" to="/meta">Main Nav</menu-item>
+                  <menu-item icon="home" to="/meta">Sub Nav</menu-item>
+                </menus>
+              </menu-item>
+            </menus>
+          </div>
+        </dropdown>
+        Dropdown Menu
       </div>
     </div>
 
@@ -18,54 +41,6 @@
 
         <h4 >In UiPopover (creates a dropdown)</h4>
 
-        <ui-collapsible title="This is open initially" open>
-          <label>Field Type:</label>
-          <ui-select
-              :options="fieldNames"
-              v-model="select2"
-              disabled
-              >
-          </ui-select>
-
-          <ui-toolbar title="Inbox">
-              <div slot="actions">
-                  <ui-icon-button
-                      color="black"
-                      icon="refresh"
-                      size="large"
-                      type="secondary"
-                  ></ui-icon-button>
-
-                  <ui-icon-button
-                      color="black"
-                      icon="search"
-                      size="large"
-                      type="secondary"
-                  ></ui-icon-button>
-
-                  <ui-icon-button
-                      color="black"
-                      has-dropdown
-                      icon="more_vert"
-                      ref="dropdownButton1"
-                      size="large"
-                      type="secondary"
-                  >
-                      <ui-menu
-                          contain-focus
-                          has-icons
-                          slot="dropdown"
-                          :options="menuOptions"
-                          @close="$refs.dropdownButton1.closeDropdown()"
-                      ></ui-menu>
-                  </ui-icon-button>
-              </div>
-          </ui-toolbar>
-
-        </ui-collapsible>
-
-        <ui-collapsible title="Longer body content">
-        </ui-collapsible>
 
       </div>
     </div>
@@ -78,14 +53,13 @@
 // <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
-  import 'keen-ui/dist/keen-ui.min.css'
-  import 'flexboxgrid/dist/flexboxgrid.min.css'
+  // import 'keen-ui/dist/keen-ui.min.css'
+  // import 'flexboxgrid/dist/flexboxgrid.min.css'
 
 	import {each, isFunction, isNil, isArray, isString} from "lodash";
   import Vue from 'vue';
-  import KeenUI from 'keen-ui';
-
-  Vue.use(KeenUI);
+  // import KeenUI from 'keen-ui';
+  // Vue.use(KeenUI);
 
   const menuOptions = [
       {

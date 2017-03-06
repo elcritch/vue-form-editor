@@ -37,6 +37,8 @@ module.exports = {
 	devtool: "source-map",
 
 	entry: {
+		vendors: [
+			],
 		test_post_form: path.resolve("dev", "post-form", "main.js"),
 		test_simple: path.resolve("dev", "simple", "main.js"),
 		meta: path.resolve("dev", "meta", "main.js"),

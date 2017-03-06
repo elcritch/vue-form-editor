@@ -1,7 +1,7 @@
 
 module.exports = {
-	elementUI: require('element-ui'),
-	elementCSS: require('element-ui/lib/theme-default/index.css'),
+	flexboxgridCss: require('flexboxgrid/dist/flexboxgrid.min.css'),
+	keenUiCss: require('keen-ui/dist/keen-ui.min.css'),
 	creatorComponent: require("./formCreator.vue"),
 	component: require("./formGenerator.vue"),
 	schema: require("./utils/schema.js"),
@@ -9,9 +9,6 @@ module.exports = {
 	abstractField: require("./fields/abstractField").default,
 
 	install(Vue) {
-		console.log("Installing elements")
-		// Vue.component("ElementUI", module.exports.elementUI)
-		Vue.use(module.exports.elementUI)
 		Vue.component("VueFormGenerator", module.exports.component);
 		Vue.component("VueFormCreator", module.exports.creatorComponent);
 	}

@@ -13,7 +13,7 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 
 module.exports = merge(baseWebpackConfig, {
   entry: {
-    app: './src/main.js',
+    app: './src/index.js',
     meta: './dev/meta/main.js',
   },
   module: {

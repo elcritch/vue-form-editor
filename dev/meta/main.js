@@ -1,8 +1,9 @@
 import Vue from "vue";
-import VueFormGenerator from "../../src";
+import VueFormGenerator from "../../src/";
 Vue.use(VueFormGenerator);
 
-var VueRouter = require('vue-router');
+import VueRouter from 'vue-router'
+
 Vue.use(VueRouter);
 
 // import ElementUI from 'element-ui'
@@ -29,7 +30,6 @@ const routes = [
 const router = new VueRouter({
   routes // short for routes: routes
 })
-
 
 
 import App from './app.vue';

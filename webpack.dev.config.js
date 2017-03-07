@@ -6,7 +6,18 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var loaders = [
 	{
 		test: /\.vue$/,
-		loader: 'vue-loader'
+		loader: 'vue-loader',
+		// options: {
+		// 	postcss: [
+		// 		require('autoprefixer')({
+		// 			browsers: ['last 3 versions']
+		// 		})
+		// 	],
+		// 	loaders: {
+		// 		scss: 'style-loader!css-loader!sass-loader'
+		// 	}
+		// }
+
 	},
 	{
 		test: /\.js$/,
@@ -33,6 +44,14 @@ var loaders = [
 	}
 ];
 
+// var cssFileName;
+// if (process.env.FULL_BUNDLE) {
+// 	cssFileName = "vfg.css";
+// } else {
+// 	cssFileName = "vfg-core.css";
+// }
+
+
 module.exports = {
 	devtool: "source-map",
 
@@ -53,12 +72,15 @@ module.exports = {
 	},
 
   plugins: [
+		require('postcss-import')(),
+		require('autoprefixer')(),
       new webpack.DefinePlugin({
           "process.env": {
               NODE_ENV: JSON.stringify("development"),
               FULL_BUNDLE: true
           }
       }),
+			new ExtractTextPlugin({ allChunks: true }),
   ],
 
 	module: {
@@ -74,13 +96,13 @@ module.exports = {
 				include: projectRoot,
         exclude: /node_modules/
       },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        })
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: ExtractTextPlugin.extract({
+      //     fallback: 'style-loader',
+      //     use: 'css-loader'
+      //   })
+      // },
       {
         test: /\.html$/,
         use: [{
@@ -109,6 +131,14 @@ module.exports = {
 	},
 
 	vue: {
+		loaders: {
+			css: ExtractTextPlugin.extract("css"),
+			postcss: ExtractTextPlugin.extract("css"),
+			sass: ExtractTextPlugin.extract("css!sass"),
+			scss: ExtractTextPlugin.extract("css!sass"),
+			less: ExtractTextPlugin.extract("css!less"),
+		},
+
 		autoprefixer: {
 			browsers: ["last 2 versions"]
 		}

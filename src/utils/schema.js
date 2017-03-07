@@ -1,7 +1,13 @@
 import {get, set, each} from "lodash";
 
+console.log("schema: module: ", module);
+
+// module.exports = {};
+//
+// console.log("schema: module.exports: ", module.exports);
+
 // Create a new model by schema default values
-module.exports.createDefaultObject = function (schema, obj = {}){
+module.exports.createDefaultObject = function (schema, obj = {}) {
 	each(schema.fields, (field) => {
 		if (get(obj, field.model) === undefined && field.default !== undefined)
 			set(obj, field.model, field.default);
@@ -13,7 +19,7 @@ module.exports.createDefaultObject = function (schema, obj = {}){
 module.exports.getMultipleFields = function(schema) {
 	let res = [];
 	each(schema.fields, (field) => {
-		if (field.multi === true) 
+		if (field.multi === true)
 			res.push(field);
 	});
 

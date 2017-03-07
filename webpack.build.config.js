@@ -11,8 +11,36 @@ var loaders = [
 		"loader": "babel"
 	},
 	{
+		test: /\.css$/,
+		loader: 'style-loader!css-loader'
+	},
+	{
+		test: /\.json$/,
+		loader: 'url-loader'
+	},
+	{
+		test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+		// loader: "url-loader"
+		loader: "url-loader?limit=10000"
+	},
+	{
+		test: /\.(ttf|eot)$/,
+		loader: "url-loader"
+	},
+	{
 		"test": /\.vue?$/,
-		"loader": "vue"
+		"loader": "vue-loader",
+		// options: {
+		// 	postcss: [
+		// 		require('autoprefixer')({
+		// 			browsers: ['last 3 versions']
+		// 		})
+		// 	],
+		// 	loaders: {
+		// 		scss: 'style-loader!css-loader!sass-loader'
+		// 	}
+		// }
+
 	}
 ];
 var cssFileName;
@@ -73,7 +101,22 @@ module.exports = [
 								}
 							]
 						})
-					}
+					},
+					{
+						test: /\.css$/,
+						use: ExtractTextPlugin.extract({
+							fallback: 'style-loader',
+							use: 'css-loader'
+						})
+					},
+					{
+						test: /\.sass$/,
+						use: ExtractTextPlugin.extract({
+							fallback: 'style-loader',
+							use: 'sass-loader'
+						})
+					},
+
 				]
 		},
 
@@ -82,6 +125,7 @@ module.exports = [
 				css: ExtractTextPlugin.extract("css"),
 				postcss: ExtractTextPlugin.extract("css"),
 				sass: ExtractTextPlugin.extract("css!sass"),
+				scss: ExtractTextPlugin.extract("css!sass"),
 				less: ExtractTextPlugin.extract("css!less"),
 			}
 		},

@@ -10,7 +10,7 @@
 	};
 </script>
 
-<style lang="sass">
+<style lang="scss">
 	.vue-form-generator .field-checkbox input {
 		margin-left: 12px;
 	}

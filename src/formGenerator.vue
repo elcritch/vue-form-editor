@@ -274,7 +274,7 @@
 
 </script>
 
-<style lang="sass">
+<style lang="scss">
 
 	$errorColor: #F00;
 

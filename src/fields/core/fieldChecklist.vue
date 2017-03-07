@@ -91,7 +91,7 @@
 </script>
 
 
-<style lang="sass">
+<style lang="scss">
 	.vue-form-generator .field-checklist {
 
 		.listbox, .dropList {

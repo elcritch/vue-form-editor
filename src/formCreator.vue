@@ -37,7 +37,7 @@
     </div>
 
     <div class="media-content ">
-      <nav class="panel ">
+      <nav class="panel">
         <p class="panel-heading">
           Repositories
         </p>
@@ -48,6 +48,12 @@
           <p class="control">
             <input class="input" type="text" placeholder="Text input">
           </p>
+          <collapse>
+            <collapse-item >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet,
+              consectetur adipiscing elit
+            </collapse-item>
+          </collapse>
         </div>
 
         <div class="panel-block">
@@ -57,6 +63,11 @@
             <i class="fa fa-check"></i>
             <span class="help is-success">This username is available</span>
           </p>
+          <edit-box>
+            <h1 slot="component">Test</h1>
+            <span slot="description">Test Desc</span>
+            <span slot="code">some long code</span>
+          </edit-box>
         </div>
 
         <div class="panel-block">
@@ -121,12 +132,13 @@
 
 // <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-
+  import EditBox from './EditBox.vue'
   // import 'keen-ui/dist/keen-ui.min.css'
   // import 'flexboxgrid/dist/flexboxgrid.min.css'
 
 	import {each, isFunction, isNil, isArray, isString} from "lodash";
   import Vue from 'vue';
+
   // import KeenUI from 'keen-ui';
   // Vue.use(KeenUI);
 
@@ -164,6 +176,7 @@
 
 	export default {
 		components: {
+      EditBox
     },
 		props: {
 			schema: Object,
@@ -291,16 +304,3 @@
 	};
 
 </script>
-
-<style lang="css">
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html {
-    font-size: 100%;
-}
-
-</style>

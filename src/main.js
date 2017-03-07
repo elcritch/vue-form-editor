@@ -1,6 +1,5 @@
 
 module.exports = {
-	vueBluCss: require('vue-blu/dist/css/vue-blu.min.css'),
 	creatorComponent: require("./formCreator.vue"),
 	component: require("./formGenerator.vue"),
 	schema: require("./utils/schema.js"),
@@ -8,6 +7,8 @@ module.exports = {
 	abstractField: require("./fields/abstractField").default,
 
 	install(Vue) {
+
+		require('vue-blu/dist/css/vue-blu.min.css');
 
 		var VueBlue = require('vue-blu');
 		Vue.use(VueBlue);

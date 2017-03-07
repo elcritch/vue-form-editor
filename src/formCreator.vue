@@ -57,17 +57,28 @@
         </div>
 
         <div class="panel-block">
-          <label class="label">Username</label>
-          <p class="control has-icon has-icon-right">
-            <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-            <i class="fa fa-check"></i>
-            <span class="help is-success">This username is available</span>
-          </p>
-          <edit-box>
-            <h1 slot="component">Test</h1>
-            <span slot="description">Test Desc</span>
-            <span slot="code">some long code</span>
-          </edit-box>
+
+          <div class="card is-fullwidth">
+            <edit-box >
+              <!-- <div slot="component" class="message is-warning"> -->
+              <div slot="component" class="card-content ">
+
+                  <label class="label">Username</label>
+                  <p class="control has-icon has-icon-right">
+                    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
+                    <i class="fa fa-check"></i>
+                    <span class="help is-success">This username is available</span>
+                  </p>
+                </div>
+              <span slot="description">Options</span>
+              <span slot="code" class="card-footer">
+                some long code<br />
+                some long code<br />
+                some long code<br />
+                some long code<br />
+              </span>
+            </edit-box>
+          </div>
         </div>
 
         <div class="panel-block">

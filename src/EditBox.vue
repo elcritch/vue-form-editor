@@ -3,10 +3,12 @@
     <slot name="component"></slot>
     <div class="box-demo-description">
       <slot name="description"></slot>
-      <span class="box-demo-btn-toggle" :class="{open: isOpen}" @click="toggle"><i class="fa fa-chevron-down"></i></span>
+      <span class="box-demo-btn-toggle" :class="{open: isOpen}" @click="toggle">
+        <i class="fa fa-chevron-down"></i>
+      </span>
     </div>
     <transition name="slide">
-      <div class="box-demo-code" v-show="isOpen">
+      <div :class="{slideup: !isOpen, slidedown: isOpen}" >
         <slot name="code"></slot>
       </div>
     </transition>
@@ -74,11 +76,20 @@ export default {
     line-height: 21px;
   }
 }
-.box-demo-code{
-  -webkit-transition: height .2s ease-in-out;
-  transition: height .2s ease-in-out;
-  overflow: auto;
+
+.slideup, .slidedown {
+  max-height: 0;
+  overflow-y: hidden;
+  -webkit-transition: max-height 0.28s ease-in-out;
+  -moz-transition: max-height 0.28s ease-in-out;
+  -o-transition: max-height 0.28s ease-in-out;
+  transition: max-height 0.28s ease-in-out;
 }
+.slidedown {
+    max-height: 800px ;
+}
+
+
 .box-demo-btn-toggle{
   position: absolute;
   right: 16px;
@@ -89,7 +100,7 @@ export default {
   font-size: 18px;
   line-height: 18px;
   color: #999;
-  i{
+  i {
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
   }

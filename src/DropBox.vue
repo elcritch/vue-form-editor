@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'EditBox',
+  name: 'DropBox',
   props: {
   },
   data() {

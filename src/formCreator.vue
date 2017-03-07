@@ -42,96 +42,16 @@
           Repositories
         </p>
 
-        <div class="panel-block">
 
-          <label class="label">Name</label>
-          <p class="control">
-            <input class="input" type="text" placeholder="Text input">
-          </p>
-          <collapse>
-            <collapse-item >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor sit amet,
-              consectetur adipiscing elit
-            </collapse-item>
-          </collapse>
-        </div>
+        <template v-for="field in fields">
 
-        <div class="panel-block">
-
-          <div class="card is-fullwidth">
-            <edit-box >
-              <!-- <div slot="component" class="message is-warning"> -->
-              <div slot="component" class="card-content ">
-
-                  <label class="label">Username</label>
-                  <p class="control has-icon has-icon-right">
-                    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-                    <i class="fa fa-check"></i>
-                    <span class="help is-success">This username is available</span>
-                  </p>
-                </div>
-              <span slot="description">Options</span>
-              <span slot="code" class="card-footer">
-                some long code<br />
-                some long code<br />
-                some long code<br />
-                some long code<br />
-              </span>
-            </edit-box>
+          <div class="panel-block">
+            <label class="label">Form Editor</label>
+            <form-editor type="field-input" :field="field" >
+            </form-editor>
           </div>
-        </div>
 
-        <div class="panel-block">
-          <label class="label">Email</label>
-          <p class="control has-icon has-icon-right">
-            <input class="input is-danger" type="text" placeholder="Email input" value="hello@">
-            <i class="fa fa-warning"></i>
-            <span class="help is-danger">This email is invalid</span>
-          </p>
-        </div>
-
-        <div class="panel-block">
-          <label class="label">Subject</label>
-          <p class="control">
-            <span class="select">
-              <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
-              </select>
-            </span>
-          </p>
-        </div>
-
-        <div class="panel-block">
-          <label class="label">Message</label>
-          <p class="control">
-            <textarea class="textarea" placeholder="Textarea"></textarea>
-          </p>
-          <p class="control">
-            <label class="checkbox">
-              <input type="checkbox">
-              Remember me
-            </label>
-          </p>
-        </div>
-        <div class="panel-block">
-          <p class="control">
-            <label class="radio">
-              <input type="radio" name="question">
-              Yes
-            </label>
-            <label class="radio">
-              <input type="radio" name="question">
-              No
-            </label>
-          </p>
-        </div>
-        <div class="panel-block">
-          <p class="control">
-            <button class="button is-primary">Submit</button>
-            <button class="button is-link">Cancel</button>
-          </p>
-        </div>
+        </template>
 
       </nav>
     </div>
@@ -143,7 +63,8 @@
 
 // <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-  import EditBox from './EditBox.vue'
+  import DropBox from './DropBox.vue'
+  import FormEditor from './FormEditor.vue'
   // import 'keen-ui/dist/keen-ui.min.css'
   // import 'flexboxgrid/dist/flexboxgrid.min.css'
 
@@ -187,7 +108,7 @@
 
 	export default {
 		components: {
-      EditBox
+      DropBox, FormEditor
     },
 		props: {
 			schema: Object,

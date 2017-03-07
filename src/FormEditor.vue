@@ -38,11 +38,22 @@
 
         </div>
         <!-- <span slot="description">Options</span> -->
-        <span slot="code" class="card-footer">
-          some long code<br />
-          some long code<br />
-          some long code<br />
-          some long code<br />
+        <span slot="code" class="card-footer is-fullwidth">
+          <div class="control is-fullwidth">
+            Field Info:<br />
+            <p>
+              :is="<input disabled :value="getFieldType(field)" />" <br />
+            </p>
+            <p>
+              :disabled="<input disabled :value="fieldDisabled(field)" />" <br />
+            </p>
+            <p>
+              :model="<input disabled :value="model" />" <br />
+            </p>
+            <p>
+              :schema.sync="<textarea disabled style="min-width: 400px; min-height: 150px; " :value="JSON.stringify(field, null, 2)" />" <br />
+            </p>
+          </div>
         </span>
       </drop-box>
     </div>

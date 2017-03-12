@@ -1,17 +1,17 @@
 <template lang="html">
   <div class="">
 
-    <div class="card is-fullwidth">
-      <drop-box >
+      <!-- <drop-box > -->
         <!-- <div slot="component" class="message is-warning"> -->
         <div slot="component" class="card-content ">
 
           <div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)">
-            <label>{{ field.label }}
-            <span class="help" v-if="field.help">
+            <label>{{ field.label }} </label>
+
+            <!-- <span class="help" v-if="field.help">
               <i class="icon"></i>
               <div class="helpText" v-html="field.help"></div>
-            </span></label>
+            </span> -->
             <div class="field-wrap">
               <component :is="getFieldType(field)"
                   :disabled="fieldDisabled(field)"
@@ -38,31 +38,7 @@
 
         </div>
         <!-- <span slot="description">Options</span> -->
-        <span slot="code" class="card-footer is-fullwidth">
-          <div class="control is-fullwidth">
-            Field Info:<br />
-            <p>
-              :is="<input disabled :value="getFieldType(field)" />" <br />
-            </p>
-            <p>
-              :disabled="<input disabled :value="fieldDisabled(field)" />" <br />
-            </p>
-            <p>
-              :model="<input disabled :value="model" />" <br />
-            </p>
-            <p>
-              :schema.sync="<textarea disabled style="min-width: 400px; min-height: 150px; " :value="JSON.stringify(field, null, 2)" />" <br />
-            </p>
-
-            <vue-form-generator
-                :schema="basicSchema"
-                :model="{}"
-                :options="{}">
-            </vue-form-generator>
-          </div>
-        </span>
-      </drop-box>
-    </div>
+      <!-- </drop-box> -->
 
   </div>
 </template>

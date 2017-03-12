@@ -34,6 +34,36 @@
         </dropdown>
         Dropdown Menu
       </div>
+
+      <nav class="panel box">
+        <tabs type="boxed">
+          <tab-item label="Field Order">
+            <div class="panel-block">
+              <p class="control has-icon columns">
+                <span class="icon is-small">
+                  <i class="fa fa-search"></i>
+                </span>
+                <input class="input is-small" type="text" placeholder="Search">
+              </p>
+            </div>
+            <draggable v-model="fields">
+              <transition-group name="list-test">
+                <div class="list-test"
+                    v-for="(field, index) in fields"
+                    :key="index" >
+                  {{field.label}}
+                </div>
+              </transition-group>
+            </draggable>
+          </tab-item>
+          <tab-item label="Edit">
+
+          </tab-item>
+        </tabs>
+
+      </nav>
+
+
     </div>
 
     <div class="media-content ">
@@ -42,16 +72,35 @@
           Repositories
         </p>
 
-
-        <template v-for="field in fields">
-
-          <div class="panel-block">
-            <label class="label">Form Editor</label>
-            <form-editor type="field-input" :field="field" >
-            </form-editor>
-          </div>
-
-        </template>
+        <draggable v-model="fields">
+          <transition-group
+              name="list-test"
+              class="card"
+          >
+            <div class="level"
+                :key="index"
+                v-for="(field, index) in fields"
+            >
+              <div class="level-left">
+                <form-editor class=""
+                    type="field-input"
+                    :field="field"
+                >
+                </form-editor>
+              </div>
+              <div class="level-right">
+                <!-- <p class="control has-icon "> -->
+                  <!-- <menu-item to="/meta" class="icon is-small" v-click="handleClick">
+                    <i class="fa fa-gear"></i>
+                  </menu-item> -->
+                  <a class="icon is-small" v-on:click="handleOptionClick($event, index, field)">
+                    <i class="fa fa-gear"></i>
+                  </a>
+                <!-- </p> -->
+              </div>
+            </div>
+          </transition-group>
+        </draggable>
 
       </nav>
     </div>
@@ -62,6 +111,7 @@
 <script>
 
 // <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  import draggable from 'vuedraggable'
 
   import DropBox from './DropBox.vue'
   import FormEditor from './FormEditor.vue'
@@ -108,7 +158,7 @@
 
 	export default {
 		components: {
-      DropBox, FormEditor
+      DropBox, FormEditor, draggable
     },
 		props: {
 			schema: Object,
@@ -143,6 +193,7 @@
         selectedOptions: [],
 				errors: [], // Validation errors
 
+        fields: this.schema.fields.slice(),
         select1: '',
         select2: 'Number',
         fieldNames: [
@@ -154,17 +205,22 @@
 		},
 
 		computed: {
-			fields() {
-				let res = [];
-				if (this.schema) {
-					each(this.schema.fields, (field) => {
-						if (!this.multiple || field.multi === true)
-							res.push(field);
-					});
-				}
-
-				return res;
-			}
+			// fields: {
+      //   get() {
+  		// 		let res = [];
+  		// 		if (this.schema) {
+  		// 			each(this.schema.fields, (field) => {
+  		// 				if (!this.multiple || field.multi === true)
+  		// 					res.push(field);
+  		// 			});
+  		// 		}
+      //
+  		// 		return res;
+  		// 	},
+      //   set(value) {
+      //     console.log("computed fields -> update: ", value)
+      //   }
+      // }
 		},
 
 
@@ -206,33 +262,43 @@
   			}
   		},
 
-      handleClick(tab, event) {
-  			console.log(tab, event);
+      handleOptionClick(event, index, field) {
+  			console.log("option click:\n\tevt: ", event, "\n\tindex: ", index, " field: ", field.model);
+
   		},
 
 			// Validating the model properties
-			validate() {
-				this.clearValidationErrors();
-
-				this.$children.forEach((child) => {
-					if (isFunction(child.validate))
-					{
-						let errors = child.validate(true);
-						errors.forEach((err) => {
-							this.errors.push({
-								field: child.schema,
-								error: err
-							});
-						});
-					}
-				});
-
-				let isValid = this.errors.length == 0;
-				this.$emit("validated", isValid, this.errors);
-				return isValid;
-			},
+			// validate() {
+			// 	this.clearValidationErrors();
+      //
+			// 	this.$children.forEach((child) => {
+			// 		if (isFunction(child.validate))
+			// 		{
+			// 			let errors = child.validate(true);
+			// 			errors.forEach((err) => {
+			// 				this.errors.push({
+			// 					field: child.schema,
+			// 					error: err
+			// 				});
+			// 			});
+			// 		}
+			// 	});
+      //
+			// 	let isValid = this.errors.length == 0;
+			// 	this.$emit("validated", isValid, this.errors);
+			// 	return isValid;
+			// },
 
 		}
 	};
 
 </script>
+
+
+<style lang="css">
+
+.list-test {
+  transition: all 1.0s;
+}
+
+</style>

@@ -16,13 +16,15 @@ module.exports = {
 			label: "--- INPUT ---",
 			model: "",
 			styleClasses: "alert alert-info"
-		}, {
+		},
+		{
 			type: "input",
 			inputType: "hidden",
 			label: "Hidden",
 			model: "id",
 			inputName: "hiddenField"
-		}, {
+		},
+		{
 			type: "input",
 			inputType: "text",
 			label: "First name",
@@ -39,7 +41,8 @@ module.exports = {
 				if (errors.length > 0)
 					console.warn("Validation error in Name field! Errors:", errors);
 			}
-		}, {
+		},
+		{
 			type: "input",
 			inputType: "text",
 			label: "Last name",
@@ -49,7 +52,8 @@ module.exports = {
 			placeholder: "User's last name",
 			styleClasses: "half-width",
 			validator: validators.string
-		}, {
+		},
+		{
 			type: "input",
 			inputType: "url",
 			label: "URL",
@@ -825,7 +829,7 @@ module.exports = {
 		// 	styleClasses: "half-width",
 		// 	validator: validators.string
 		// },
-		// {	
+		// {
 		// 		type: "text",
 		// 		label: "Username",
 		// 		model: "userName",
@@ -835,7 +839,7 @@ module.exports = {
 		// 		placeholder: "User's last name",
 		// 		styleClasses: ["half-width", "first"],
 		// 		validator: validators.string
-		// 	}, 
+		// 	},
 		// {
 		// 		type: "text",
 		// 		label: "Company name",
@@ -844,7 +848,7 @@ module.exports = {
 		// 		visible(model) {
 		// 			return model && model.type == "business";
 		// 		}
-		// 	}, 
+		// 	},
 		// 	{
 		// 		type: "text",
 		// 		label: "Company phone",
@@ -857,13 +861,13 @@ module.exports = {
 		// 		visible(model) {
 		// 			return model && model.type == "business";
 		// 		}
-		// 	}, 
+		// 	},
 		// 	{
 		// 		type: "email",
 		// 		label: "E-mail (email field)",
 		// 		model: "email",
 		// 		placeholder: "User's e-mail address"
-		// 	},  
+		// 	},
 		// 	{
 		// 		type: "text",
 		// 		label: "Phone",
@@ -874,7 +878,7 @@ module.exports = {
 		// 		help: "You can use any <b>formatted</b> texts. Or place a <a target='_blank' href='https://github.com/icebob/vue-form-generator'>link</a> to another site.",
 		// 		styleClasses: "half-width"
 		// 			//validator: validators.regexp
-		// 	}, 
+		// 	},
 		// 	{
 		// 		type: "color",
 		// 		label: "Color (basic)",
@@ -884,7 +888,7 @@ module.exports = {
 		// 			//preferredFormat: "rgb"
 		// 		},
 		// 		validator: validators.required
-		// 	}, 
+		// 	},
 		// 	{
 		// 		type: "number",
 		// 		label: "Age (number field)",
@@ -899,7 +903,7 @@ module.exports = {
 		// 			validators.integer,
 		// 			validators.number
 		// 		]
-		// 	}, 
+		// 	},
 		// 	{
 		// 		type: "text",
 		// 		label: "City",
@@ -962,7 +966,7 @@ module.exports = {
 		// 				};
 		// 			}
 		// 		}]
-		// 	}, 
+		// 	},
 
 	]
 };

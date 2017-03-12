@@ -53,6 +53,12 @@
             <p>
               :schema.sync="<textarea disabled style="min-width: 400px; min-height: 150px; " :value="JSON.stringify(field, null, 2)" />" <br />
             </p>
+
+            <vue-form-generator
+                :schema="basicSchema"
+                :model="{}"
+                :options="{}">
+            </vue-form-generator>
           </div>
         </span>
       </drop-box>
@@ -107,6 +113,55 @@
       }
   ];
 
+  const basicSchema = {
+      fields: [
+        {
+          type: "dropbox",
+          label: "Input",
+          model: "input",
+          readonly: false,
+          featured: true,
+          required: true,
+          disabled: false,
+          values: [ "input", "checklist", "checkbox", "dropbox", ]
+        },
+        {
+          type: "dropbox",
+          label: "Input Type",
+          model: "inputType",
+          readonly: false,
+          featured: true,
+          required: true,
+          disabled: false,
+          values: [ "input", "checklist", "checkbox", "dropbox" ]
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Label",
+          model: "label",
+          readonly: false,
+          featured: true,
+          required: true,
+          disabled: false,
+        },
+        {
+          type: "input",
+          inputType: "text",
+          label: "Model",
+          model: "model",
+          readonly: false,
+          featured: true,
+          required: true,
+          disabled: false,
+        },
+  			// type: "input",
+  			// inputType: "hidden",
+  			// label: "--- INPUT ---",
+  			// model: "",
+  			// styleClasses: "alert alert-info"
+  		]
+  }
 
 	export default {
 
@@ -122,6 +177,8 @@
 
 		data () {
 			return {
+        basicSchema: basicSchema,
+
         menuOptions: menuOptions,
         activeName: 'first',
         selectedOptions: [],

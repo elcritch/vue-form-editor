@@ -81,7 +81,7 @@
           <transition-group name="list-test" class="card" >
             <div class="level" :key="index" v-for="(field, index) in fields" >
               <div class="level-left">
-                <form-editor :name="field.name" v-model="field.property" > </form-editor>
+                <form-field :name="field.name" v-model="field.property" > </form-editor>
               </div>
               <div class="level-right">
                   <a class="icon is-small" v-on:click="handleOptionClick($event, index, field)">
@@ -105,6 +105,7 @@
 
   import DropBox from './DropBox.vue'
   import FormEditor from './FormEditor.vue'
+  import FormField from './FormField.vue'
   // import 'keen-ui/dist/keen-ui.min.css'
   // import 'flexboxgrid/dist/flexboxgrid.min.css'
 
@@ -122,7 +123,7 @@
     },
 
 		components: {
-      DropBox, FormEditor, draggable
+      DropBox, FormField, FormEditor, draggable
     },
 		props: {
 			schema: Object,

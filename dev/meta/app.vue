@@ -30,7 +30,6 @@ export default {
 				    "type": "object",
 				    "properties": {
 				        "id": {
-				            "metadata": 0,
 				            "order": 1,
 				            "description": "The unique identifier for a product",
 				            "type": "integer"
@@ -46,7 +45,7 @@ export default {
 				        },
 				        "field1": {
 				            "order": 2,
-				            "description": "Name of the product",
+				            "description": "Another field",
 				            "type": "string"
 				        }
 				    },

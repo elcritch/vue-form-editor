@@ -1,12 +1,13 @@
 <template lang="html">
   <div class="">
 
-    <div slot="component" class="card-content ">
+    <div slot="component" class="card-content is-fullwidth">
 
       <!-- <div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)"> -->
         <label>Name: {{ name }} </label>
         <br />
-        <label>Property: {{ property }} </label>
+        <label>Description:</label>
+        <input  disabled :placeholder="property.description" />
 
         <div class="field-wrap">
           <!-- <component :is="getFieldType(field)"

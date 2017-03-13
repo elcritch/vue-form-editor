@@ -51,6 +51,7 @@
                 <div class="list-test"
                     v-for="(field, index) in fields"
                     :key="index" >
+
                   {{field.label}}
                 </div>
               </transition-group>
@@ -58,6 +59,11 @@
           </tab-item>
           <tab-item label="Edit">
 
+          </tab-item>
+          <tab-item label="Schema">
+            <!-- <pre v-html="prettyJSON(schema)"></pre> -->
+            <textarea class="textarea" style="font-size: 70%; min-height: 400px; " placeholder="Textarea" v-model="jsonSchema" >
+            </textarea>
           </tab-item>
         </tabs>
 
@@ -75,19 +81,20 @@
         <draggable v-model="fields">
           <transition-group
               name="list-test"
-              class="card"
-          >
+              class="card" >
+
             <div class="level"
                 :key="index"
-                v-for="(field, index) in fields"
-            >
+                v-for="(field, index) in fields" >
+
               <div class="level-left">
                 <form-editor class=""
                     type="field-input"
-                    :field="field"
-                >
+                    :field="field" >
+
                 </form-editor>
               </div>
+
               <div class="level-right">
                 <!-- <p class="control has-icon "> -->
                   <!-- <menu-item to="/meta" class="icon is-small" v-click="handleClick">
@@ -124,39 +131,12 @@
   // import KeenUI from 'keen-ui';
   // Vue.use(KeenUI);
 
-  const menuOptions = [
-      {
-          id: 'edit',
-          label: 'Edit',
-          icon: 'edit',
-          secondaryText: 'Ctrl+E'
-      },
-      {
-          id: 'duplicate',
-          label: 'Duplicate',
-          icon: 'content_copy',
-          secondaryText: 'Ctrl+D'
-      },
-      {
-          id: 'share',
-          label: 'Share',
-          icon: 'share',
-          secondaryText: 'Ctrl+Shift+S',
-          disabled: true
-      },
-      {
-          type: 'divider'
-      },
-      {
-          id: 'delete',
-          label: 'Delete',
-          icon: 'delete',
-          secondaryText: 'Del'
-      }
-  ];
-
-
 	export default {
+    model: {
+      prop: 'schema',
+      event: 'change'
+    },
+
 		components: {
       DropBox, FormEditor, draggable
     },
@@ -188,12 +168,10 @@
 
 		data () {
 			return {
-        menuOptions: menuOptions,
         activeName: 'first',
         selectedOptions: [],
 				errors: [], // Validation errors
-
-        fields: this.schema.fields.slice(),
+        // fields: this.schema.fields.slice(),
         select1: '',
         select2: 'Number',
         fieldNames: [
@@ -205,22 +183,26 @@
 		},
 
 		computed: {
-			// fields: {
-      //   get() {
-  		// 		let res = [];
-  		// 		if (this.schema) {
-  		// 			each(this.schema.fields, (field) => {
-  		// 				if (!this.multiple || field.multi === true)
-  		// 					res.push(field);
-  		// 			});
-  		// 		}
-      //
-  		// 		return res;
-  		// 	},
-      //   set(value) {
-      //     console.log("computed fields -> update: ", value)
-      //   }
-      // }
+			fields: {
+        get() {
+          console.log("fields -> get -> ", JSON.stringify(this.schema.properties))
+
+  				return [];
+  			},
+        set(value) {
+          console.log("computed fields -> update: ", value)
+        }
+      },
+			jsonSchema: {
+        get() {
+          return JSON.stringify(this.schema, null, 2)
+  			},
+        set(value) {
+          // console.log("computed jsonSchema -> update: ", value)
+          let obj = JSON.parse(value)
+          this.$emit("change", obj)
+        }
+      }
 		},
 
 
@@ -266,28 +248,6 @@
   			console.log("option click:\n\tevt: ", event, "\n\tindex: ", index, " field: ", field.model);
 
   		},
-
-			// Validating the model properties
-			// validate() {
-			// 	this.clearValidationErrors();
-      //
-			// 	this.$children.forEach((child) => {
-			// 		if (isFunction(child.validate))
-			// 		{
-			// 			let errors = child.validate(true);
-			// 			errors.forEach((err) => {
-			// 				this.errors.push({
-			// 					field: child.schema,
-			// 					error: err
-			// 				});
-			// 			});
-			// 		}
-			// 	});
-      //
-			// 	let isValid = this.errors.length == 0;
-			// 	this.$emit("validated", isValid, this.errors);
-			// 	return isValid;
-			// },
 
 		}
 	};

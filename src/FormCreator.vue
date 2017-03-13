@@ -100,21 +100,14 @@
 
 <script>
 
-// <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   import draggable from 'vuedraggable'
 
   import DropBox from './DropBox.vue'
   import FormEditor from './FormEditor.vue'
   import FormField from './FormField.vue'
-  // import 'keen-ui/dist/keen-ui.min.css'
-  // import 'flexboxgrid/dist/flexboxgrid.min.css'
 
-	// import {each, isFunction, isNil, isArray, isString} from "lodash";
 	import _ from "lodash";
   import Vue from 'vue';
-
-  // import KeenUI from 'keen-ui';
-  // Vue.use(KeenUI);
 
 	export default {
     model: {

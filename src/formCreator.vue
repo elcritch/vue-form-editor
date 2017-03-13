@@ -59,7 +59,7 @@
                     v-for="(field, index) in fields"
                     :key="index" >
 
-                  {{field.label}}
+                  {{field.name}}
                 </div>
               </transition-group>
             </draggable>
@@ -78,19 +78,11 @@
         </p>
 
         <draggable v-model="fields">
-          <transition-group
-              name="list-test"
-              class="card" >
-
-            <div class="level"
-                :key="index"
-                v-for="(field, index) in fields" >
-
-              <!-- <h4>Field: {{field}}</h4> -->
+          <transition-group name="list-test" class="card" >
+            <div class="level" :key="index" v-for="(field, index) in fields" >
               <div class="level-left">
                 <form-editor :name="field.name" v-model="field.property" > </form-editor>
               </div>
-
               <div class="level-right">
                   <a class="icon is-small" v-on:click="handleOptionClick($event, index, field)">
                     <i class="fa fa-gear"></i>
@@ -246,7 +238,11 @@
   		},
 
       handleOptionClick(event, index, field) {
-  			console.log("option click:\n\tevt: ", event, "\n\tindex: ", index, " field: ", field.model);
+  			console.log("option click:\n\tevt: ", event, "\n\tindex: ", index, " field: ", field.name);
+        setEditTabProperty(field)
+  		},
+
+      setEditTabProperty(field) {
 
   		},
 

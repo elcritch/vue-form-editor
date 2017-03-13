@@ -4,10 +4,7 @@
     <div slot="component" class="card-content is-fullwidth">
 
       <!-- <div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)"> -->
-        <label>Name: {{ name }} </label>
-        <br />
-        <label>Description:</label>
-        <input  disabled :placeholder="property.description" />
+        <label>{{name}}</label>
 
         <div class="field-wrap">
           <!-- <component :is="getFieldType(field)"

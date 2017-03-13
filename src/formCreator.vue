@@ -86,12 +86,9 @@
                 :key="index"
                 v-for="(field, index) in fields" >
 
+              <!-- <h4>Field: {{field}}</h4> -->
               <div class="level-left">
-                <form-editor class=""
-                    type="field-input"
-                    :field="field" >
-
-                </form-editor>
+                <form-editor :name="field.name" v-model="field.property" > </form-editor>
               </div>
 
               <div class="level-right">
@@ -119,7 +116,8 @@
   // import 'keen-ui/dist/keen-ui.min.css'
   // import 'flexboxgrid/dist/flexboxgrid.min.css'
 
-	import {each, isFunction, isNil, isArray, isString} from "lodash";
+	// import {each, isFunction, isNil, isArray, isString} from "lodash";
+	import _ from "lodash";
   import Vue from 'vue';
 
   // import KeenUI from 'keen-ui';
@@ -179,12 +177,21 @@
 		computed: {
 			fields: {
         get() {
-          console.log("fields -> get -> ", JSON.stringify(this.schema.properties))
-
-  				return [];
+          var fields = _.map(this.schema.properties, (value, key) => {
+            return {name: key, property: value}
+          });
+          fields.sort((a,b) => {
+            let lhs = a.property.order || -1
+            let rhs = b.property.order || -1
+            return lhs < rhs ? -1 * lhs : 1 * rhs
+          })
+  				return fields;
   			},
-        set(value) {
-          console.log("computed fields -> update: ", value)
+        set(fieldList) {
+          for (var idx = 0; idx < fieldList.length; idx++) {
+            var {property} = fieldList[idx]
+            property.order = idx + 1;
+          }
         }
       },
 			jsonSchema: {
@@ -210,7 +217,7 @@
 			clearValidationErrors() {
 				this.errors.splice(0);
 
-				each(this.$children, (child) => {
+				_.each(this.$children, (child) => {
           if ("clearValidationErrors" in child)
   					child.clearValidationErrors();
 				});

@@ -31,12 +31,21 @@ export default {
 				    "properties": {
 				        "id": {
 				            "metadata": 0,
-				            "order": 0,
+				            "order": 1,
 				            "description": "The unique identifier for a product",
 				            "type": "integer"
 				        },
 				        "name": {
-				            "order": 1,
+				            "description": "Name of the product",
+				            "type": "string"
+				        },
+				        "name2": {
+				            "order": 3,
+				            "description": "Name of the product",
+				            "type": "string"
+				        },
+				        "field1": {
+				            "order": 2,
 				            "description": "Name of the product",
 				            "type": "string"
 				        }

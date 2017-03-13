@@ -3,34 +3,36 @@
 
     <div slot="component" class="card-content ">
 
-      <div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)">
-        <label>{{ field.label }} </label>
+      <!-- <div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)"> -->
+        <label>Name: {{ name }} </label>
+        <br />
+        <label>Property: {{ property }} </label>
 
         <div class="field-wrap">
-          <component :is="getFieldType(field)"
+          <!-- <component :is="getFieldType(field)"
               :disabled="fieldDisabled(field)"
               :model="model"
               :schema.sync="field"
               @model-updated="modelUpdated"
               @validated="onFieldValidated">
-          </component>
-          <div class="buttons" v-if="buttonVisibility(field)">
+          </component> -->
+          <!-- <div class="buttons" v-if="buttonVisibility(field)">
             <button v-for="btn in field.buttons" @click="btn.onclick(model, field)" :class="btn.classes">
               {{ btn.label }}
             </button>
-          </div>
+          </div> -->
         </div>
-        <div class="hint" v-if="field.hint">
+        <!-- <div class="hint" v-if="field.hint">
           {{ field.hint }}
-        </div>
-        <div class="errors" v-if="fieldErrors(field).length &gt; 0">
+        </div> -->
+        <!-- <div class="errors" v-if="fieldErrors(field).length &gt; 0">
           <span v-for="(error, index) in fieldErrors(field)" track-by="index">
             {{ error }}
           </span>
-        </div>
+        </div> -->
       </div>
 
-    </div>
+    <!-- </div> -->
 
   </div>
 </template>
@@ -38,7 +40,7 @@
 <script>
 
 // <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  import fieldsMixin from './fieldsMixin.js'
+  // import fieldsMixin from './fieldsMixin.js'
 
   import DropBox from './DropBox.vue'
   // import 'keen-ui/dist/keen-ui.min.css'
@@ -50,104 +52,28 @@
   // import KeenUI from 'keen-ui';
   // Vue.use(KeenUI);
 
-  const menuOptions = [
-      {
-          id: 'edit',
-          label: 'Edit',
-          icon: 'edit',
-          secondaryText: 'Ctrl+E'
-      },
-      {
-          id: 'duplicate',
-          label: 'Duplicate',
-          icon: 'content_copy',
-          secondaryText: 'Ctrl+D'
-      },
-      {
-          id: 'share',
-          label: 'Share',
-          icon: 'share',
-          secondaryText: 'Ctrl+Shift+S',
-          disabled: true
-      },
-      {
-          type: 'divider'
-      },
-      {
-          id: 'delete',
-          label: 'Delete',
-          icon: 'delete',
-          secondaryText: 'Del'
-      }
-  ];
-
-  const basicSchema = {
-      fields: [
-        {
-          type: "dropbox",
-          label: "Input",
-          model: "input",
-          readonly: false,
-          featured: true,
-          required: true,
-          disabled: false,
-          values: [ "input", "checklist", "checkbox", "dropbox", ]
-        },
-        {
-          type: "dropbox",
-          label: "Input Type",
-          model: "inputType",
-          readonly: false,
-          featured: true,
-          required: true,
-          disabled: false,
-          values: [ "input", "checklist", "checkbox", "dropbox" ]
-        },
-        {
-          type: "input",
-          inputType: "text",
-          label: "Label",
-          model: "label",
-          readonly: false,
-          featured: true,
-          required: true,
-          disabled: false,
-        },
-        {
-          type: "input",
-          inputType: "text",
-          label: "Model",
-          model: "model",
-          readonly: false,
-          featured: true,
-          required: true,
-          disabled: false,
-        },
-  			// type: "input",
-  			// inputType: "hidden",
-  			// label: "--- INPUT ---",
-  			// model: "",
-  			// styleClasses: "alert alert-info"
-  		]
-  }
-
 	export default {
 
-    mixins: [fieldsMixin],
+    // mixins: [fieldsMixin],
+
+    model: {
+      prop: 'property',
+      event: 'change'
+    },
+
 
 		components: {
       DropBox
     },
 
 		props: {
-      field: Object,
+      property: Object,
+      name: String
 		},
 
 		data () {
 			return {
-        basicSchema: basicSchema,
 
-        menuOptions: menuOptions,
         activeName: 'first',
         selectedOptions: [],
 				errors: [], // Validation errors

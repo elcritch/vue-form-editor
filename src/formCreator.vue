@@ -37,6 +37,13 @@
 
       <nav class="panel box">
         <tabs type="boxed">
+          <tab-item label="Schema">
+            <textarea class="textarea" style="font-size: 70%; min-height: 400px; " placeholder="Textarea" v-model="jsonSchema" >
+            </textarea>
+          </tab-item>
+          <tab-item label="Edit">
+
+          </tab-item>
           <tab-item label="Field Order">
             <div class="panel-block">
               <p class="control has-icon columns">
@@ -57,14 +64,6 @@
               </transition-group>
             </draggable>
           </tab-item>
-          <tab-item label="Edit">
-
-          </tab-item>
-          <tab-item label="Schema">
-            <!-- <pre v-html="prettyJSON(schema)"></pre> -->
-            <textarea class="textarea" style="font-size: 70%; min-height: 400px; " placeholder="Textarea" v-model="jsonSchema" >
-            </textarea>
-          </tab-item>
         </tabs>
 
       </nav>
@@ -75,7 +74,7 @@
     <div class="media-content ">
       <nav class="panel">
         <p class="panel-heading">
-          Repositories
+          Schema Fields
         </p>
 
         <draggable v-model="fields">
@@ -96,14 +95,9 @@
               </div>
 
               <div class="level-right">
-                <!-- <p class="control has-icon "> -->
-                  <!-- <menu-item to="/meta" class="icon is-small" v-click="handleClick">
-                    <i class="fa fa-gear"></i>
-                  </menu-item> -->
                   <a class="icon is-small" v-on:click="handleOptionClick($event, index, field)">
                     <i class="fa fa-gear"></i>
                   </a>
-                <!-- </p> -->
               </div>
             </div>
           </transition-group>

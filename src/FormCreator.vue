@@ -81,7 +81,7 @@
           <transition-group name="list-test" class="card" >
             <div class="level" :key="index" v-for="(field, index) in fields" >
               <div class="level-left">
-                <form-field :name="field.name" v-model="field.property" > </form-editor>
+                <form-field :name="field.name" v-model="field.property" > </form-field>
               </div>
               <div class="level-right">
                   <a class="icon is-small" v-on:click="handleOptionClick($event, index, field)">

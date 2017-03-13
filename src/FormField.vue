@@ -6,29 +6,18 @@
         <label>{{name}}</label>
 
         <div class="field-wrap"> </div>
-      </div>
+    </div>
 
   </div>
 </template>
 
 <script>
 
-// <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  // import fieldsMixin from './fieldsMixin.js'
-
   import DropBox from './DropBox.vue'
-  // import 'keen-ui/dist/keen-ui.min.css'
-  // import 'flexboxgrid/dist/flexboxgrid.min.css'
-
 	import {each, isFunction, isNil, isArray, isString} from "lodash";
   import Vue from 'vue';
 
-  // import KeenUI from 'keen-ui';
-  // Vue.use(KeenUI);
-
 	export default {
-
-    // mixins: [fieldsMixin],
 
     model: {
       prop: 'property',
@@ -47,18 +36,6 @@
 
 		data () {
 			return {
-
-        activeName: 'first',
-        selectedOptions: [],
-				errors: [], // Validation errors
-
-        select1: '',
-        select2: 'Number',
-        fieldNames: [
-          "Text",
-          "Number",
-          "Checkbox"
-        ]
 			};
 		},
 

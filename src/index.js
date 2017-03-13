@@ -1,6 +1,6 @@
 
 module.exports = {
-	creatorComponent: require("./formCreator.vue"),
+	creatorComponent: require("./FormCreator.vue"),
 	component: require("./formGenerator.vue"),
 	schema: require("./utils/schema.js"),
 	validators: require("./utils/validators.js"),

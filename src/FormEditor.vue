@@ -1,44 +1,36 @@
 <template lang="html">
   <div class="">
 
-      <!-- <drop-box > -->
-        <!-- <div slot="component" class="message is-warning"> -->
-        <div slot="component" class="card-content ">
+    <div slot="component" class="card-content ">
 
-          <div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)">
-            <label>{{ field.label }} </label>
+      <div class="form-group" v-if="fieldVisible(field)" :class="getFieldRowClasses(field)">
+        <label>{{ field.label }} </label>
 
-            <!-- <span class="help" v-if="field.help">
-              <i class="icon"></i>
-              <div class="helpText" v-html="field.help"></div>
-            </span> -->
-            <div class="field-wrap">
-              <component :is="getFieldType(field)"
-                  :disabled="fieldDisabled(field)"
-                  :model="model"
-                  :schema.sync="field"
-                  @model-updated="modelUpdated"
-                  @validated="onFieldValidated">
-              </component>
-              <div class="buttons" v-if="buttonVisibility(field)">
-                <button v-for="btn in field.buttons" @click="btn.onclick(model, field)" :class="btn.classes">
-                  {{ btn.label }}
-                </button>
-              </div>
-            </div>
-            <div class="hint" v-if="field.hint">
-              {{ field.hint }}
-            </div>
-            <div class="errors" v-if="fieldErrors(field).length &gt; 0">
-              <span v-for="(error, index) in fieldErrors(field)" track-by="index">
-                {{ error }}
-              </span>
-            </div>
+        <div class="field-wrap">
+          <component :is="getFieldType(field)"
+              :disabled="fieldDisabled(field)"
+              :model="model"
+              :schema.sync="field"
+              @model-updated="modelUpdated"
+              @validated="onFieldValidated">
+          </component>
+          <div class="buttons" v-if="buttonVisibility(field)">
+            <button v-for="btn in field.buttons" @click="btn.onclick(model, field)" :class="btn.classes">
+              {{ btn.label }}
+            </button>
           </div>
-
         </div>
-        <!-- <span slot="description">Options</span> -->
-      <!-- </drop-box> -->
+        <div class="hint" v-if="field.hint">
+          {{ field.hint }}
+        </div>
+        <div class="errors" v-if="fieldErrors(field).length &gt; 0">
+          <span v-for="(error, index) in fieldErrors(field)" track-by="index">
+            {{ error }}
+          </span>
+        </div>
+      </div>
+
+    </div>
 
   </div>
 </template>

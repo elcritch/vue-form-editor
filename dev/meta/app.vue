@@ -41,8 +41,7 @@ export default {
 				            "type": "string"
 				        }
 				    },
-				    "required": ["id", "name", "blah"],
-				    "order": ["id", "name"]
+				    "required": ["id", "name"]
 			},
 			formOptions: {
 				// validateAfterLoad: true,

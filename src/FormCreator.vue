@@ -37,13 +37,17 @@
 
       <nav class="panel box">
         <tabs type="boxed">
+
+          <tab-item label="Edit">
+            <form-editor v-model="selected.property" :name="selected.name">
+            </form-editor>
+          </tab-item>
+
           <tab-item label="Schema">
             <textarea class="textarea" style="font-size: 70%; min-height: 400px; " placeholder="Textarea" v-model="jsonSchema" >
             </textarea>
           </tab-item>
-          <tab-item label="Edit">
 
-          </tab-item>
           <tab-item label="Field Order">
             <div class="panel-block">
               <p class="control has-icon columns">
@@ -64,6 +68,7 @@
               </transition-group>
             </draggable>
           </tab-item>
+
         </tabs>
 
       </nav>
@@ -147,7 +152,7 @@
 		data () {
 			return {
         activeName: 'first',
-        selectedOptions: [],
+        selected: {},
 				errors: [], // Validation errors
         // fields: this.schema.fields.slice(),
         select1: '',
@@ -209,35 +214,13 @@
 				});
 			},
 
-      prettyJSON: function(json) {
-  			if (json) {
-  				json = JSON.stringify(json, undefined, 4);
-  				json = json.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  				return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-  					var cls = "number";
-  					if (/^"/.test(match)) {
-  						if (/:$/.test(match)) {
-  							cls = "key";
-  						} else {
-  							cls = "string";
-  						}
-  					} else if (/true|false/.test(match)) {
-  						cls = "boolean";
-  					} else if (/null/.test(match)) {
-  						cls = "null";
-  					}
-  					return "<span class=\"" + cls + "\">" + match + "</span>";
-  				});
-  			}
-  		},
-
       handleOptionClick(event, index, field) {
   			console.log("option click:\n\tevt: ", event, "\n\tindex: ", index, " field: ", field.name);
-        setEditTabProperty(field)
+        this.setEditTabProperty(field)
   		},
 
       setEditTabProperty(field) {
-
+        this.$data.selected = field
   		},
 
 		}

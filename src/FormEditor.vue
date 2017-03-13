@@ -1,9 +1,8 @@
 <template lang="html">
   <div class="">
-    <div slot="component" class="card-content is-fullwidth">
       <label>{{name}}</label>
-      <div class="field-wrap"> </div>
-    </div>
+      <pre style="font-size: 80%; max-width: 25em; white-space: pre-wrap; " v-html="prettyJSON(property)" class="field-wrap">
+      </pre>
   </div>
 </template>
 
@@ -33,7 +32,7 @@
 
 		data () {
 			return {
-      }
+      };
 		},
 
 		methods: {
@@ -42,7 +41,101 @@
         console.log(value);
       },
 
+      prettyJSON: function(json) {
+        // let json = JSON.stringify(obj)
+  			if (json) {
+  				json = JSON.stringify(json, undefined, 2);
+  				json = json.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  				return json.replace(
+            /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+            function (match) {
+    					var cls = "number";
+    					if (/^"/.test(match)) {
+    						if (/:$/.test(match)) {
+    							cls = "key";
+    						} else {
+    							cls = "string";
+    						}
+    					} else if (/true|false/.test(match)) {
+    						cls = "boolean";
+    					} else if (/null/.test(match)) {
+    						cls = "null";
+    					}
+    					return `<span class="prettyjson-` + cls + `" >` + match + `</span>`;
+    				});
+  			}
+  		},
+
 		}
 	};
 
 </script>
+
+<style lang="css">
+		html {
+			font-family: Tahoma;
+			font-size: 14px;
+		}
+
+		body {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-size: 14px;
+			line-height: 1.42857143;
+			color: #333;
+		}
+
+		pre {
+			overflow: auto;
+		}
+			pre .prettyjson-string { color: #885800; }
+			pre .prettyjson-number { color: blue; }
+			pre .prettyjson-boolean { color: magenta; }
+			pre .prettyjson-null { color: red; }
+			pre .prettyjson-key { color: green; }
+
+		.container {
+			max-width: 970px;
+			padding-right: 15px;
+			padding-left: 15px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
+		h1 {
+			text-align: center;
+			font-size: 36px;
+			margin-top: 20px;
+			margin-bottom: 10px;
+			font-weight: 500;
+		}
+
+		fieldset {
+			border: 0;
+		}
+
+		.panel {
+			margin-bottom: 20px;
+			background-color: #fff;
+			border: 1px solid transparent;
+			border-radius: 4px;
+			-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+			box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+			border-color: #ddd;
+		}
+
+		.panel-heading {
+			color: #333;
+			background-color: #f5f5f5;
+			border-color: #ddd;
+
+			padding: 10px 15px;
+			border-bottom: 1px solid transparent;
+			border-top-left-radius: 3px;
+			border-top-right-radius: 3px;
+		}
+
+		.panel-body {
+			padding: 15px;
+		}
+
+</style>

@@ -5,6 +5,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+var WriteFilePlugin = require('write-file-webpack-plugin')
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
@@ -31,6 +32,10 @@ module.exports = merge(baseWebpackConfig, {
   entry: {
     app: './src/index.js',
     meta: './dev/meta/main.js',
+    test_post_form: './dev/post-form/main.js',
+    test_simple: './dev/simple/main.js',
+    // full: './dev/full/main.js',
+    mselect: './dev/multiselect/main.js'
   },
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
@@ -50,6 +55,7 @@ module.exports = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true
     }),
-    new FriendlyErrorsPlugin()
+    new FriendlyErrorsPlugin(),
+    new WriteFilePlugin()
   ]
 })

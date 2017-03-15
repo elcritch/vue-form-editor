@@ -113,13 +113,14 @@
     					} else if (/null/.test(match)) {
     						cls = "null";
     					}
-    					return `<span class="prettyjson-` + cls + `" >` + match + `</span>`;
+    					return `<span class="prettyjson-` + cls + `"  >` + match + `</span>`;
     				});
   			}
   		},
 
 		}
 	};
+
 
 </script>
 

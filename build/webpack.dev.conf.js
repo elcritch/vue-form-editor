@@ -11,6 +11,22 @@ Object.keys(baseWebpackConfig.entry).forEach(function (name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 })
 
+// entry: {
+//   vendors: [
+//     ],
+//   test_post_form: path.resolve("dev", "post-form", "main.js"),
+//   test_simple: path.resolve("dev", "simple", "main.js"),
+//   meta: path.resolve("dev", "meta", "main.js"),
+//   full: path.resolve("dev", "full", "main.js"),
+//   mselect: path.resolve("dev", "multiselect", "main.js")
+// },
+//
+// output: {
+//   path: path.resolve(__dirname, './dev'),
+//   filename: "[name].entry.js",
+//   publicPath: "/"
+// },
+
 module.exports = merge(baseWebpackConfig, {
   entry: {
     app: './src/index.js',

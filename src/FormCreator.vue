@@ -152,7 +152,7 @@
 		data () {
 			return {
         activeName: 'first',
-        selected: {},
+        selected: { name: null, property: {} },
 				errors: [], // Validation errors
         // fields: this.schema.fields.slice(),
         select1: '',

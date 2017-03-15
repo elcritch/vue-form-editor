@@ -1,8 +1,56 @@
 <template lang="html">
-  <div class="">
-      <label>{{name}}</label>
-      <pre style="font-size: 80%; max-width: 25em; white-space: pre-wrap; " v-html="prettyJSON(property)" class="field-wrap">
-      </pre>
+  <div class="" v-if="property">
+
+    <p class="control" v-on:dblclick="handleChange($event)">
+      <label class="label">Identifier:</label>
+      <input class="input"
+          v-model="property.id"
+          :disabled="!('id' in property)" >
+    </p>
+
+    <p class="control" v-on:dblclick="handleChange($event)">
+      <label class="label">Title:</label>
+      <input class="input"
+          v-model="property.title"
+          :disabled="!('title' in property)" >
+    </p>
+
+    <p class="control" v-on:dblclick="handleChange($event)">
+      <label class="label">Description:</label>
+      <input class="input"
+          v-model="property.description"
+          :disabled="!('description' in property)" >
+    </p>
+
+    <p class="control" v-on:dblclick="handleChange($event)">
+      <label class="label">Schema:</label>
+      <span class="select">
+        <select>
+          <option>Basic</option>
+          <option>Advanced</option>
+        </select>
+      </span>
+    </p>
+
+    <p class="control" v-on:dblclick="handleChange($event)">
+      <label class="label">Simple Type:</label>
+      <span class="select">
+        <select v-model="property.type">
+          <option v-for="simpleType in simpleTypes.enum" >{{simpleType}}</option>
+        </select>
+      </span>
+    </p>
+
+    <p class="control" v-on:dblclick="handleChange($event)">
+      <label class="label">Default:</label>
+      <input class="input" :disabled="!('default' in property)" >
+    </p>
+
+    <br />
+
+    <label>{{name}}</label>
+    <pre style="font-size: 80%; max-width: 25em; white-space: pre-wrap; " v-html="prettyJSON(property)" class="field-wrap">
+    </pre>
   </div>
 </template>
 
@@ -32,6 +80,10 @@
 
 		data () {
 			return {
+        simpleTypes: {
+            enum: [ "array", "boolean", "integer", "null", "number", "object", "string" ]
+        },
+
       };
 		},
 

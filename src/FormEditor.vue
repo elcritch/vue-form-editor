@@ -7,8 +7,8 @@
         <label class="label" v-if="header.type == 'index'">Index:</label>
         <input class="input"
             v-model="header.key"
-            :disabled="true" />
-        <label class="label">Index:</label>
+            :disabled="true" >
+        </input>
       </p>
 
       <p class="control" v-on:dblclick="handleChange($event)">
@@ -38,7 +38,7 @@
 
       <p class="control" v-on:dblclick="handleChange($event)">
         <label class="label">Default:</label>
-        <input
+        <input class="input"
             v-if="property.type === 'string'"
             field="default"
             v-model="property.default"

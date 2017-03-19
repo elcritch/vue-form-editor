@@ -39,7 +39,7 @@
         <tabs type="boxed">
 
           <tab-item label="Edit">
-            <form-editor v-model="selected.property" :name="selected.name">
+            <form-editor v-model="selected.property" :header="selected.header">
             </form-editor>
           </tab-item>
 
@@ -54,7 +54,7 @@
                 <span class="icon is-small">
                   <i class="fa fa-search"></i>
                 </span>
-                <input class="input is-small" type="text" placeholder="Search">
+                <input class="input is-small" type="text" placeholder="Search"/>
               </p>
             </div>
             <draggable v-model="fields">
@@ -63,7 +63,7 @@
                     v-for="(field, index) in fields"
                     :key="index" >
 
-                  {{field.name}}
+                  {{field.header.key}}
                 </div>
               </transition-group>
             </draggable>
@@ -81,12 +81,15 @@
         <p class="panel-heading">
           Schema Fields
         </p>
-
+        <p class="panel-heading">
+          Type: <input disabled :value="schema.type">
+          </input>
+        </p>
         <draggable v-model="fields">
           <transition-group name="list-test" class="card" >
             <div class="level" :key="index" v-for="(field, index) in fields" >
               <div class="level-left">
-                <form-field :name="field.name" v-model="field.property" > </form-field>
+                <form-field :header="field.header" v-model="field.property" > </form-field>
               </div>
               <div class="level-right">
                   <a class="icon is-small" v-on:click="handleOptionClick($event, index, field)">
@@ -152,7 +155,7 @@
 		data () {
 			return {
         activeName: 'first',
-        selected: { name: null, property: {} },
+        selected: { header: { key: null, type: null}, property: {} },
 				errors: [], // Validation errors
         // fields: this.schema.fields.slice(),
         select1: '',
@@ -169,13 +172,14 @@
 			fields: {
         get() {
           var fields = _.map(this.schema.properties, (value, key) => {
-            return {name: key, property: value}
+            return {header: {'key': key, 'type': 'key'}, property: value}
           });
           fields.sort((a,b) => {
             let lhs = a.property.order || -1
             let rhs = b.property.order || -1
             return lhs < rhs ? -1 * lhs : 1 * rhs
           })
+          console.log("Fields: ", fields)
   				return fields;
   			},
         set(fieldList) {
@@ -215,7 +219,7 @@
 			},
 
       handleOptionClick(event, index, field) {
-  			console.log("option click:\n\tevt: ", event, "\n\tindex: ", index, " field: ", field.name);
+  			console.log("option click:\n\tevt: ", event, "\n\tindex: ", index, " field: ", field.header.key);
         this.setEditTabProperty(field)
   		},
 

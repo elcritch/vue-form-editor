@@ -1,56 +1,98 @@
 <template lang="html">
-  <div class="" v-if="property">
-
-    <p class="control" v-on:dblclick="handleChange($event)">
-      <label class="label">Identifier:</label>
-      <input class="input"
-          v-model="property.id"
-          :disabled="!('id' in property)" >
-    </p>
-
-    <p class="control" v-on:dblclick="handleChange($event)">
-      <label class="label">Title:</label>
-      <input class="input"
-          v-model="property.title"
-          :disabled="!('title' in property)" >
-    </p>
-
-    <p class="control" v-on:dblclick="handleChange($event)">
-      <label class="label">Description:</label>
-      <input class="input"
-          v-model="property.description"
-          :disabled="!('description' in property)" >
-    </p>
-
-    <p class="control" v-on:dblclick="handleChange($event)">
-      <label class="label">Schema:</label>
-      <span class="select">
-        <select>
-          <option>Basic</option>
-          <option>Advanced</option>
-        </select>
-      </span>
-    </p>
-
-    <p class="control" v-on:dblclick="handleChange($event)">
-      <label class="label">Simple Type:</label>
-      <span class="select">
-        <select v-model="property.type">
-          <option v-for="simpleType in simpleTypes.enum" >{{simpleType}}</option>
-        </select>
-      </span>
-    </p>
-
-    <p class="control" v-on:dblclick="handleChange($event)">
-      <label class="label">Default:</label>
-      <input class="input" :disabled="!('default' in property)" >
-    </p>
-
+  <div class="" v-if="Object.keys(property).length >= 1">
     <br />
 
-    <label>{{name}}</label>
-    <pre style="font-size: 80%; max-width: 25em; white-space: pre-wrap; " v-html="prettyJSON(property)" class="field-wrap">
-    </pre>
+      <p >
+        <label class="label" v-if="header.type == 'key'">Key:</label>
+        <label class="label" v-if="header.type == 'index'">Index:</label>
+        <input class="input"
+            v-model="header.key"
+            :disabled="true" />
+        <label class="label">Index:</label>
+      </p>
+
+      <p class="control" >
+        <label class="label">Type:</label>
+        <span class="select">
+          <select v-model="property.type" v-on:change="typeChanged()">
+            <option v-for="simpleType in simpleTypes.enum" >{{simpleType}}</option>
+          </select>
+        </span>
+      </p>
+
+      <p class="control" v-on:dblclick="handleChange($event)">
+        <label class="label">Title:</label>
+        <input class="input"
+            field="title"
+            v-model="property.title"
+            :disabled="!('title' in property)" >
+      </p>
+
+      <p class="control" v-on:dblclick="handleChange($event)">
+        <label class="label">Description:</label>
+        <input class="input"
+            field="description"
+            v-model="property.description"
+            :disabled="!('description' in property)" >
+      </p>
+
+
+      <p class="control" v-on:dblclick="handleChange($event)">
+        <label class="label">Default:</label>
+        <input
+            v-if="property.type === 'string'"
+            field="default"
+            v-model="property.default"
+            :disabled="!('default' in property)" >
+        </input>
+        <input-number
+            v-if="property.type === 'integer'"
+            field="default"
+            v-model="property.default"
+            :step="1"
+            :disabled="!('default' in property)" >
+        </input-number>
+        <input-number
+            v-if="property.type === 'number'"
+            field="default"
+            v-model="property.default"
+            :step="0.2"
+            :disabled="!('default' in property)" >
+        </input-number>
+        <b-switch
+            v-if="property.type === 'boolean'"
+            on-text="True"
+            off-text="False"
+            :disabled="!('default' in property)"
+            v-model="property.default" >
+        </b-switch>
+
+      </p>
+
+      <p class="control" v-on:dblclick="handleChange($event)">
+        <label class="label">Schema:</label>
+        <span class="select">
+          <select>
+            <option>Basic</option>
+            <option disabled>Advanced</option>
+          </select>
+        </span>
+      </p>
+
+      <p class="control" v-on:dblclick="handleChange($event)">
+        <label class="label">Schema Identifier:</label>
+        <input class="input"
+            v-model="property.id"
+            :disabled="!('id' in property)" >
+      </p>
+
+
+    <br />
+    <div class="box">
+      <label>Header: {{header}}</label>
+      <pre style="font-size: 80%; max-width: 25em; white-space: pre-wrap; " v-html="prettyJSON(property)" class="field-wrap">
+      </pre>
+      </div>
   </div>
 </template>
 
@@ -75,7 +117,7 @@
 
 		props: {
       property: Object,
-      name: String
+      header: Object
 		},
 
 		data () {
@@ -86,11 +128,40 @@
 
       };
 		},
+    // watch: {
+    //   property(value) {
+    //     console.log("HEADER: ", value, this.header)
+    //   }
+    // },
 
 		methods: {
 
+      typeChanged() {
+        var newType = this.property.type
+        if ('default' in this.property) {
+          console.log("type changed")
+          try {
+            if (newType === 'string')
+              this.property.default = String(this.property.default)
+            else if (newType === 'number' || newType === 'integer')
+              this.property.default = Number(this.property.default)
+            else if (newType === 'bool')
+              this.property.default = this.property.default ? true : false
+            else
+              this.$delete(this.property, 'default')
+          } catch (error) {
+            this.$delete(this.property, 'default')
+          }
+        }
+      },
+
       handleChange(value) {
-        console.log(value);
+        var disabledElement = value.srcElement.querySelector("input[disabled], .is-disabled")
+        var fieldName = disabledElement && disabledElement.attributes['field'].value
+
+        if (fieldName && fieldName !== null) {
+          this.$set(this.property, "" + fieldName, null)
+        }
       },
 
       prettyJSON: function(json) {

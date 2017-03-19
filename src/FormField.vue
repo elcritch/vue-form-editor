@@ -3,7 +3,7 @@
 
     <div slot="component" class="card-content is-fullwidth">
 
-        <label>{{name}}</label>
+        <label>{{header.key}}</label>
 
         <div class="field-wrap"> </div>
     </div>
@@ -31,7 +31,7 @@
 
 		props: {
       property: Object,
-      name: String
+      header: Object
 		},
 
 		data () {

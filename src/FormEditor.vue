@@ -148,19 +148,7 @@
       typeChanged() {
         var newType = this.property.type
         if ('default' in this.property) {
-          console.log("type changed")
-          try {
-            if (newType === 'string')
-              this.property.default = String(this.property.default)
-            else if (newType === 'number' || newType === 'integer')
-              this.property.default = Number(this.property.default)
-            else if (newType === 'bool')
-              this.property.default = this.property.default ? true : false
-            else
-              this.$delete(this.property, 'default')
-          } catch (error) {
             this.$delete(this.property, 'default')
-          }
         }
       },
 

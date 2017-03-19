@@ -11,15 +11,6 @@
         <label class="label">Index:</label>
       </p>
 
-      <p class="control" >
-        <label class="label">Type:</label>
-        <span class="select">
-          <select v-model="property.type" v-on:change="typeChanged()">
-            <option v-for="simpleType in simpleTypes.enum" >{{simpleType}}</option>
-          </select>
-        </span>
-      </p>
-
       <p class="control" v-on:dblclick="handleChange($event)">
         <label class="label">Title:</label>
         <input class="input"
@@ -36,6 +27,14 @@
             :disabled="!('description' in property)" >
       </p>
 
+      <p class="control" >
+        <label class="label">Type:</label>
+        <span class="select">
+          <select v-model="property.type" v-on:change="typeChanged()">
+            <option v-for="simpleType in simpleTypes.enum" >{{simpleType}}</option>
+          </select>
+        </span>
+      </p>
 
       <p class="control" v-on:dblclick="handleChange($event)">
         <label class="label">Default:</label>
@@ -59,13 +58,19 @@
             :step="0.2"
             :disabled="!('default' in property)" >
         </input-number>
-        <b-switch
-            v-if="property.type === 'boolean'"
-            on-text="True"
-            off-text="False"
-            :disabled="!('default' in property)"
-            v-model="property.default" >
-        </b-switch>
+        <span class="select"
+              :disabled="!('default' in property)"
+              v-if="property.type === 'boolean'" >
+          <select class="select"
+              :disabled="!('default' in property)"
+              v-if="property.type === 'boolean'"
+              field="default"
+              v-model="property.default"
+              >
+            <option :value="true">True</option>
+            <option :value="false">False</option>
+          </select>
+        </span>
 
       </p>
 
@@ -136,6 +141,10 @@
 
 		methods: {
 
+      updateDefault(event, value) {
+          console.log("event: ", event, value)
+      },
+
       typeChanged() {
         var newType = this.property.type
         if ('default' in this.property) {
@@ -156,7 +165,7 @@
       },
 
       handleChange(value) {
-        var disabledElement = value.srcElement.querySelector("input[disabled], .is-disabled")
+        var disabledElement = value.srcElement.querySelector("*[disabled], .is-disabled")
         var fieldName = disabledElement && disabledElement.attributes['field'].value
 
         if (fieldName && fieldName !== null) {
